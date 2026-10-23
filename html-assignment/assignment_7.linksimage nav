@@ -1,0 +1,46 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>My Assignment Page</title>
+</head>
+<body>
+	<header>
+		<h1>My Assignment Page</h1>
+		<p>A page organized with semantic HTML.</p>
+	</header>
+
+	<nav aria-label="Main navigation">
+		<ul>
+			<li><a href="#about">About</a></li>
+			<li><a href="#work">My Work</a></li>
+		</ul>
+	</nav>
+
+	<main>
+		<section id="about">
+			<h2>About This Page</h2>
+			<p>This page uses semantic elements to give its content clear structure.</p>
+		</section>
+
+		<section id="work">
+			<h2>My Work</h2>
+			<article>
+				<h3>Assignment Overview</h3>
+				<p>This article contains the main details of the assignment.</p>
+			</article>
+		</section>
+
+		<aside>
+			<p>Use headings in order to make the page easier to navigate.</p>
+		</aside>
+	</main>
+
+	<footer>
+		<p>&copy; 2025 My Assignment</p>
+	</footer>
+</body>
+</html>
+```

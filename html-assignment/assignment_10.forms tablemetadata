@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Job Application</title>
+</head>
+<body>
+	<main>
+		<h1>Job Application</h1>
+		<p>Use this form to apply for a position with our team.</p>
+
+		<form action="#" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="form-id" value="job-application">
+
+			<fieldset>
+				<legend>Applicant details</legend>
+				<p><label for="name">Full name</label><br>
+					<input type="text" id="name" name="name" autocomplete="name" required></p>
+				<p><label for="email">Email address</label><br>
+					<input type="email" id="email" name="email" autocomplete="email" required></p>
+				<p><label for="phone">Phone number</label><br>
+					<input type="tel" id="phone" name="phone" autocomplete="tel"></p>
+				<p><label for="website">Portfolio or LinkedIn URL</label><br>
+					<input type="url" id="website" name="website" placeholder="https://example.com"></p>
+				<p><label for="account-password">Application password</label><br>
+					<input type="password" id="account-password" name="account-password" minlength="8" autocomplete="new-password"></p>
+			</fieldset>
+
+			<fieldset>
+				<legend>Position preferences</legend>
+				<p><label for="position-search">Search for a position</label><br>
+					<input type="search" id="position-search" name="position-search" placeholder="Job title or keyword"></p>
+				<p><label for="start-date">Available start date</label><br>
+					<input type="date" id="start-date" name="start-date"></p>
+				<p><label for="interview-time">Preferred interview time</label><br>
+					<input type="time" id="interview-time" name="interview-time"></p>
+				<p><label for="availability-month">Available month</label><br>
+					<input type="month" id="availability-month" name="availability-month"></p>
+				<p><label for="start-week">Preferred start week</label><br>
+					<input type="week" id="start-week" name="start-week"></p>
+				<p><label for="interview-slot">Preferred interview date and time</label><br>
+					<input type="datetime-local" id="interview-slot" name="interview-slot"></p>
+				<p><label for="experience">Years of experience</label><br>
+					<input type="number" id="experience" name="experience" min="0" max="50" step="1"></p>
+				<p><label for="salary">Desired annual salary</label><br>
+					<input type="range" id="salary" name="salary" min="30000" max="200000" step="5000" value="80000"></p>
+				<p><label for="profile-color">Profile accent color</label><br>
+					<input type="color" id="profile-color" name="profile-color" value="#3157a4"></p>
+				<p><label for="resume">Upload résumé</label><br>
+					<input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx"></p>
+				<p><label for="cover-letter">Cover letter</label><br>
+					<textarea id="cover-letter" name="cover-letter" rows="6" cols="45"></textarea></p>
+				<p><label for="work-mode">Preferred work arrangement</label><br>
+					<select id="work-mode" name="work-mode">
+						<option value="">Choose an option</option>
+						<option value="onsite">On-site</option>
+						<option value="hybrid">Hybrid</option>
+						<option value="remote">Remote</option>
+					</select></p>
+				<p><input type="checkbox" id="relocation" name="relocation" value="yes">
+					<label for="relocation">I am willing to relocate</label></p>
+				<fieldset>
+					<legend>Employment type</legend>
+					<input type="radio" id="full-time" name="employment-type" value="full-time" checked>
+					<label for="full-time">Full-time</label>
+					<input type="radio" id="part-time" name="employment-type" value="part-time">
+					<label for="part-time">Part-time</label>
+					<input type="radio" id="contract" name="employment-type" value="contract">
+					<label for="contract">Contract</label>
+				</fieldset>
+			</fieldset>
+
+			<p>
+				<input type="button" value="Save draft" onclick="alert('Draft saved in this browser session.')">
+				<input type="reset" value="Clear form">
+				<input type="submit" value="Submit application">
+				<input type="image" alt="Submit application" width="120" height="36"
+					src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='36'%3E%3Crect width='120' height='36' rx='4' fill='%233157a4'/%3E%3Ctext x='60' y='23' text-anchor='middle' font-family='sans-serif' font-size='14' fill='white'%3EApply now%3C/text%3E%3C/svg%3E">
+			</p>
+		</form>
+	</main>
+</body>
+</html>

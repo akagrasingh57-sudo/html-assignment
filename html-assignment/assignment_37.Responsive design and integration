@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A simple landing page for a better way to work.">
+	<title>Northstar — Work with clarity</title>
+	<style>
+		:root {
+			--ink: #17223b;
+			--muted: #65718a;
+			--accent: #5267e8;
+			--surface: #f5f7fc;
+			--content-width: 1120px;
+		}
+
+		* { box-sizing: border-box; }
+
+		body {
+			margin: 0;
+			color: var(--ink);
+			background: #fff;
+			font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+			line-height: 1.6;
+		}
+
+		a { color: inherit; text-decoration: none; }
+
+		.container {
+			width: min(var(--content-width), calc(100% - 64px));
+			margin-inline: auto;
+		}
+
+		.site-header { border-bottom: 1px solid #edf0f6; }
+		.navigation { min-height: 80px; display: flex; align-items: center; justify-content: space-between; }
+		.brand { font-size: 1.35rem; font-weight: 750; letter-spacing: -0.04em; }
+		.nav-links { display: flex; align-items: center; gap: 32px; color: var(--muted); font-size: 0.95rem; }
+
+		.button {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			min-height: 48px;
+			padding: 0 22px;
+			border-radius: 8px;
+			background: var(--accent);
+			color: #fff;
+			font-weight: 650;
+		}
+
+		.hero { padding: 104px 0 112px; text-align: center; }
+		.eyebrow { color: var(--accent); font-size: 0.82rem; font-weight: 750; letter-spacing: 0.12em; text-transform: uppercase; }
+		.hero h1 { max-width: 780px; margin: 18px auto; font-size: 4rem; line-height: 1.08; letter-spacing: -0.06em; }
+		.hero p { max-width: 640px; margin: 0 auto 30px; color: var(--muted); font-size: 1.15rem; }
+
+		.features { padding: 80px 0 96px; background: var(--surface); }
+		.section-heading { margin: 0 0 42px; text-align: center; }
+		.section-heading h2 { margin: 0 0 10px; font-size: 2.25rem; letter-spacing: -0.04em; }
+		.section-heading p { margin: 0; color: var(--muted); }
+		.feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+		.feature-card { padding: 30px; border: 1px solid #e8ebf3; border-radius: 12px; background: #fff; }
+		.feature-card h3 { margin: 0 0 10px; font-size: 1.2rem; }
+		.feature-card p { margin: 0; color: var(--muted); }
+		.site-footer { padding: 30px 0; color: var(--muted); font-size: 0.9rem; }
+		.footer-content { display: flex; align-items: center; justify-content: space-between; }
+	</style>
+</head>
+<body>
+	<header class="site-header">
+		<nav class="navigation container" aria-label="Main navigation">
+			<a class="brand" href="#home">Northstar</a>
+			<div class="nav-links">
+				<a href="#features">Features</a>
+				<a href="#about">About</a>
+				<a class="button" href="#get-started">Get started</a>
+			</div>
+		</nav>
+	</header>
+
+	<main id="home">
+		<section class="hero" aria-labelledby="hero-title">
+			<div class="container">
+				<span class="eyebrow">A clearer way forward</span>
+				<h1 id="hero-title">Make room for your best work.</h1>
+				<p>Bring your plans, people, and priorities together in one calm, focused workspace.</p>
+				<a class="button" id="get-started" href="#features">Explore the platform</a>
+			</div>
+		</section>
+
+		<section class="features" id="features" aria-labelledby="features-title">
+			<div class="container">
+				<div class="section-heading">
+					<h2 id="features-title">Everything in sync</h2>
+					<p>Simple tools that help your team move forward together.</p>
+				</div>
+				<div class="feature-grid">
+					<article class="feature-card">
+						<h3>Find your focus</h3>
+						<p>Keep important work visible and turn big goals into clear next steps.</p>
+					</article>
+					<article class="feature-card">
+						<h3>Work as one</h3>
+						<p>Share context, coordinate tasks, and keep everyone moving in the same direction.</p>
+					</article>
+					<article class="feature-card" id="about">
+						<h3>See your progress</h3>
+						<p>Understand what is moving forward with a helpful view of your team's work.</p>
+					</article>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer">
+		<div class="container footer-content">
+			<a class="brand" href="#home">Northstar</a>
+			<span>© 2025 Northstar. All rights reserved.</span>
+		</div>
+	</footer>
+</body>
+</html>

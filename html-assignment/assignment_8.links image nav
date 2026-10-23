@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Alex Morgan's personal portfolio and journal about design, creativity, and everyday life.">
+	<title>Alex Morgan — Designer &amp; Journal</title>
+	<style>
+		:root {
+			--ink: #252a27;
+			--muted: #68716b;
+			--paper: #f8f8f4;
+			--green: #395b4a;
+			--lime: #dce9c7;
+			--line: #dfe3dc;
+			--serif: Georgia, "Times New Roman", serif;
+		}
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body { margin: 0; color: var(--ink); background: var(--paper); font-family: Arial, Helvetica, sans-serif; line-height: 1.6; }
+		a { color: inherit; }
+		.wrap { width: min(1100px, calc(100% - 48px)); margin: 0 auto; }
+		header { border-bottom: 1px solid var(--line); }
+		.nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+		.brand { text-decoration: none; font: 700 1.25rem var(--serif); letter-spacing: -.03em; }
+		.brand span { color: var(--green); }
+		nav { display: flex; gap: 28px; }
+		nav a { text-decoration: none; color: var(--muted); font-size: .9rem; }
+		nav a:hover, nav a:focus { color: var(--green); }
+		.hero { display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; gap: 64px; padding: 76px 0 88px; }
+		.eyebrow { color: var(--green); text-transform: uppercase; letter-spacing: .16em; font-size: .72rem; font-weight: 700; }
+		h1, h2, h3, p { margin-top: 0; }
+		h1 { max-width: 600px; margin: 14px 0 20px; font: 400 clamp(3rem, 6vw, 5rem)/1.02 var(--serif); letter-spacing: -.055em; }
+		.hero-copy > p { max-width: 480px; color: var(--muted); font-size: 1.08rem; }
+		.button { display: inline-block; margin-top: 14px; padding: 12px 20px; border-radius: 3px; background: var(--green); color: white; text-decoration: none; font-size: .9rem; }
+		.button:hover, .button:focus { background: #294536; }
+		.portrait { position: relative; min-height: 390px; }
+		.portrait img { display: block; width: 100%; height: 390px; object-fit: cover; border-radius: 48% 48% 4px 4px; }
+		.photo-note { position: absolute; right: -18px; bottom: 24px; padding: 13px 18px; background: var(--lime); font: italic 1rem var(--serif); }
+		section { padding: 70px 0; border-top: 1px solid var(--line); }
+		.section-heading { display: flex; justify-content: space-between; align-items: end; gap: 20px; margin-bottom: 30px; }
+		h2 { margin-bottom: 0; font: 400 clamp(2rem, 4vw, 3rem)/1.1 var(--serif); letter-spacing: -.04em; }
+		.section-heading p { max-width: 400px; margin-bottom: 2px; color: var(--muted); }
+		.projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+		.project { overflow: hidden; background: #fff; border: 1px solid var(--line); }
+		.project img { display: block; width: 100%; height: 210px; object-fit: cover; }
+		.project-body { padding: 19px; }
+		.project h3 { margin-bottom: 7px; font: 400 1.35rem var(--serif); }
+		.project p { margin: 0; color: var(--muted); font-size: .92rem; }
+		.tag { display: inline-block; margin-bottom: 8px; color: var(--green); text-transform: uppercase; letter-spacing: .12em; font-size: .65rem; font-weight: 700; }
+		.journal { display: grid; grid-template-columns: 1fr 1fr; gap: 42px; }
+		.post { padding: 20px 0; border-bottom: 1px solid var(--line); }
+		.post time { color: var(--green); font-size: .77rem; text-transform: uppercase; letter-spacing: .1em; }
+		.post h3 { margin: 8px 0; font: 400 1.5rem var(--serif); }
+		.post p { margin-bottom: 0; color: var(--muted); }
+		.about { background: var(--lime); border: 0; }
+		.about-inner { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; align-items: start; }
+		.about-inner p { color: #45534a; max-width: 650px; }
+		.contact { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+		.contact p { color: var(--muted); margin: 12px 0 0; }
+		footer { padding: 24px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
+		.footer-inner { display: flex; justify-content: space-between; gap: 16px; }
+		@media (max-width: 760px) {
+			.wrap { width: min(100% - 32px, 600px); }
+			.nav { min-height: 68px; align-items: flex-start; padding: 18px 0; flex-direction: column; gap: 10px; }
+			nav { flex-wrap: wrap; gap: 8px 20px; }
+			.hero { grid-template-columns: 1fr; gap: 34px; padding: 55px 0 65px; }
+			.portrait { min-height: 300px; }
+			.portrait img { height: 300px; }
+			.photo-note { right: 0; }
+			.projects { grid-template-columns: 1fr; }
+			.project img { height: 240px; }
+			.journal, .about-inner { grid-template-columns: 1fr; gap: 24px; }
+			section { padding: 54px 0; }
+			.section-heading, .contact { align-items: flex-start; flex-direction: column; }
+			.footer-inner { flex-direction: column; }
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<div class="wrap nav">
+			<a class="brand" href="#home">Alex Morgan<span>.</span></a>
+			<nav aria-label="Main navigation">
+				<a href="#work">Selected work</a>
+				<a href="#journal">Journal</a>
+				<a href="#about">About</a>
+				<a href="#contact">Contact</a>
+			</nav>
+		</div>
+	</header>
+
+	<main>
+		<div class="wrap hero" id="home">
+			<div class="hero-copy">
+				<span class="eyebrow">Designer · Maker · Curious human</span>
+				<h1>Making thoughtful things for a more thoughtful world.</h1>
+				<p>Hi, I’m Alex—a multidisciplinary designer who loves clear ideas, warm colors, and the little details that make everyday experiences better.</p>
+				<a class="button" href="#work">Explore my work <span aria-hidden="true">→</span></a>
+			</div>
+			<div class="portrait">
+				<img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=900&amp;q=85" alt="Portrait of a smiling creative professional">
+				<span class="photo-note">Currently finding inspiration outdoors ✿</span>
+			</div>
+		</div>
+
+		<section id="work">
+			<div class="wrap">
+				<div class="section-heading">
+					<div><span class="eyebrow">A few good things</span><h2>Selected work</h2></div>
+					<p>A small collection of projects built with care, collaboration, and a healthy amount of curiosity.</p>
+				</div>
+				<div class="projects">
+					<article class="project">
+						<img src="https://images.unsplash.com/photo-1545235617-9465d2a55698?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Colorful design inspiration arranged on a desk" loading="lazy">
+						<div class="project-body"><span class="tag">Brand identity</span><h3>Field Notes Studio</h3><p>A grounded visual identity for a community-minded creative space.</p></div>
+					</article>
+					<article class="project">
+						<img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Laptop and notebook on a tidy workspace" loading="lazy">
+						<div class="project-body"><span class="tag">Digital experience</span><h3>Good Things Market</h3><p>A simple, joyful online shop celebrating independent makers.</p></div>
+					</article>
+					<article class="project">
+						<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Sunlit mountain landscape beneath a wide sky" loading="lazy">
+						<div class="project-body"><span class="tag">Editorial</span><h3>Open Air Journal</h3><p>Stories and imagery about slowing down and getting outside.</p></div>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section id="journal">
+			<div class="wrap">
+				<div class="section-heading"><div><span class="eyebrow">Notes from along the way</span><h2>The journal</h2></div><p>Ideas, discoveries, and reminders to notice the good stuff.</p></div>
+				<div class="journal">
+					<article class="post"><time datetime="2025-04-12">April 12, 2025 · Design</time><h3><a href="#contact">A little more room for the idea</a></h3><p>Why stepping away from the screen is sometimes the most useful part of a creative process.</p></article>
+					<article class="post"><time datetime="2025-03-28">March 28, 2025 · Everyday</time><h3><a href="#contact">Collecting colors on a neighborhood walk</a></h3><p>Finding a fresh palette in familiar places, from the corner store to the last light of day.</p></article>
+				</div>
+			</div>
+		</section>
+
+		<section class="about" id="about">
+			<div class="wrap about-inner">
+				<div><span class="eyebrow">A bit about me</span><h2>Good work starts with good questions.</h2></div>
+				<div><p>I’m an independent designer based in Portland, Oregon. I partner with kind people and purpose-led teams to shape identities, digital experiences, and stories that feel both useful and human.</p><p>When I’m not designing, you’ll find me tending to too many houseplants, browsing a bookstore, or taking the scenic route home. I believe the best creative work comes from paying attention—and staying open to what’s next.</p></div>
+			</div>
+		</section>
+
+		<section id="contact">
+			<div class="wrap contact">
+				<div><span class="eyebrow">Have something in mind?</span><h2>Let’s make it meaningful.</h2><p>For collaborations, kind hellos, or a good book recommendation.</p></div>
+				<a class="button" href="mailto:hello@alexmorgan.example">Email Alex <span aria-hidden="true">↗</span></a>
+			</div>
+		</section>
+	</main>
+
+	<footer>
+		<div class="wrap footer-inner"><span>© 2025 Alex Morgan. Made with care.</span><a href="#home">Back to top ↑</a></div>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,15 @@
+:root {
+	/* Colors */
+	--color-primary: #2563eb;
+	--color-secondary: #7c3aed;
+	--color-text: #1f2937;
+	--color-background: #ffffff;
+	--color-muted: #6b7280;
+
+	/* Font sizes */
+	--font-size-sm: 0.875rem;
+	--font-size-base: 1rem;
+	--font-size-lg: 1.25rem;
+	--font-size-xl: 1.5rem;
+	--font-size-2xl: 2rem;
+}

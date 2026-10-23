@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="BrightPath multi-page website: Home, About, Registration, and Contact.">
+	<title>BrightPath | Home</title>
+	<style>
+		:root { font-family: Arial, sans-serif; color: #193347; background: #f6f9fa; }
+		* { box-sizing: border-box; }
+		body { margin: 0; line-height: 1.6; }
+		header, footer { background: #fff; border-color: #d7e2e6; border-style: solid; }
+		header { border-width: 0 0 1px; }
+		footer { border-width: 1px 0 0; padding: 1rem 0; color: #526873; }
+		.container { width: min(100% - 2rem, 960px); margin: auto; }
+		.bar { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+		.brand { font-size: 1.35rem; font-weight: bold; color: #126781; text-decoration: none; }
+		nav { display: flex; flex-wrap: wrap; gap: .3rem; }
+		nav a { padding: .55rem .75rem; border-radius: .35rem; color: inherit; text-decoration: none; }
+		nav a:hover, nav a[aria-current="page"] { color: #126781; background: #e8f3f5; }
+		main { min-height: 72vh; padding: 2rem 0; }
+		.page { display: none; }
+		.page.active { display: block; }
+		.panel { background: white; border: 1px solid #d7e2e6; border-radius: .7rem; padding: clamp(1.25rem, 4vw, 2.25rem); }
+		.hero { background: #e8f3f5; }
+		h1 { margin-top: 0; line-height: 1.2; }
+		.button { display: inline-block; border: 0; border-radius: .35rem; background: #126781; color: white; padding: .7rem 1rem; font: inherit; text-decoration: none; cursor: pointer; }
+		.button.alt { background: #dcebef; color: #193347; }
+		form { display: grid; gap: 1rem; max-width: 620px; }
+		.field { display: grid; gap: .35rem; }
+		input, select, textarea { width: 100%; padding: .65rem; border: 1px solid #9aafb8; border-radius: .3rem; font: inherit; }
+		.check { display: flex; align-items: center; gap: .5rem; }
+		.check input { width: auto; }
+		table { width: 100%; border-collapse: collapse; background: white; }
+		caption { text-align: left; font-weight: bold; padding: .65rem 0; }
+		th, td { border: 1px solid #c8d7dc; padding: .65rem; text-align: left; }
+		thead { background: #e8f3f5; }
+		.notice { padding: .75rem; background: #e8f3f5; border-radius: .3rem; }
+		@media (max-width: 600px) { .bar { align-items: flex-start; flex-direction: column; padding: .8rem 0; } }
+	</style>
+</head>
+<body>
+	<header>
+		<div class="container bar">
+			<a class="brand" href="#home">BrightPath</a>
+			<nav aria-label="Main navigation">
+				<a href="#home">Home</a><a href="#about">About</a><a href="#registration">Registration</a><a href="#contact">Contact</a>
+			</nav>
+		</div>
+	</header>
+	<main class="container">
+		<section class="page" id="home" aria-labelledby="home-title">
+			<div class="panel hero">
+				<h1 id="home-title">Make your next step count.</h1>
+				<p>Welcome to BrightPath, a friendly place to learn, connect, and plan what comes next.</p>
+				<a class="button" href="#registration">Get started</a>
+				<a class="button alt" href="#about">Learn about us</a>
+			</div>
+			<h2>Explore BrightPath</h2>
+			<p>Discover our programs, register your interest, or contact our team using the navigation above.</p>
+		</section>
+		<section class="page panel" id="about" aria-labelledby="about-title">
+			<h1 id="about-title">About BrightPath</h1>
+			<p>BrightPath helps people build practical skills through welcoming programs and shared learning. We make useful opportunities easier to discover and join.</p>
+			<h2>Our programs</h2>
+			<table>
+				<caption>Example program schedule</caption>
+				<thead><tr><th scope="col">Program</th><th scope="col">Format</th><th scope="col">Duration</th></tr></thead>
+				<tbody>
+					<tr><th scope="row">Foundations Workshop</th><td>In person</td><td>4 weeks</td></tr>
+					<tr><th scope="row">Creative Skills</th><td>Online</td><td>6 weeks</td></tr>
+					<tr><th scope="row">Community Project</th><td>Hybrid</td><td>8 weeks</td></tr>
+				</tbody>
+			</table>
+		</section>
+		<section class="page panel" id="registration" aria-labelledby="registration-title">
+			<h1 id="registration-title">Registration</h1>
+			<p>Register your interest using the form below. Required fields are marked with an asterisk.</p>
+			<form id="registration-form">
+				<div class="field"><label for="reg-name">Full name *</label><input id="reg-name" name="name" autocomplete="name" required></div>
+				<div class="field"><label for="reg-email">Email address *</label><input id="reg-email" name="email" type="email" autocomplete="email" required></div>
+				<div class="field"><label for="program">Program of interest *</label><select id="program" name="program" required><option value="">Choose a program</option><option>Foundations Workshop</option><option>Creative Skills</option><option>Community Project</option></select></div>
+				<label class="check"><input type="checkbox" name="updates"> Send me occasional program updates</label>
+				<button class="button" type="submit">Submit registration</button>
+				<p class="notice" id="registration-status" role="status" hidden></p>
+			</form>
+		</section>
+		<section class="page panel" id="contact" aria-labelledby="contact-title">
+			<h1 id="contact-title">Contact us</h1>
+			<p>Have a question? Send a message and our team will be glad to help.</p>
+			<form id="contact-form">
+				<div class="field"><label for="contact-name">Your name *</label><input id="contact-name" name="name" autocomplete="name" required></div>
+				<div class="field"><label for="contact-email">Email address *</label><input id="contact-email" name="email" type="email" autocomplete="email" required></div>
+				<div class="field"><label for="subject">Subject *</label><input id="subject" name="subject" required></div>
+				<div class="field"><label for="message">Message *</label><textarea id="message" name="message" rows="5" required></textarea></div>
+				<button class="button" type="submit">Send message</button>
+				<p class="notice" id="contact-status" role="status" hidden></p>
+			</form>
+			<p>You can also email <a href="mailto:hello@brightpath.example">hello@brightpath.example</a>.</p>
+		</section>
+	</main>
+	<footer><div class="container">&copy; <span id="year"></span> BrightPath. All rights reserved.</div></footer>
+	<script>
+		const pages = [...document.querySelectorAll('.page')];
+		const links = [...document.querySelectorAll('nav a')];
+		function showPage() {
+			const wanted = location.hash.slice(1);
+			const current = pages.some(page => page.id === wanted) ? wanted : 'home';
+			pages.forEach(page => page.classList.toggle('active', page.id === current));
+			links.forEach(link => link.hash === '#' + current ? link.setAttribute('aria-current', 'page') : link.removeAttribute('aria-current'));
+			document.title = 'BrightPath | ' + current[0].toUpperCase() + current.slice(1);
+		}
+		window.addEventListener('hashchange', showPage);
+		showPage();
+		document.getElementById('year').textContent = new Date().getFullYear();
+		[['registration-form', 'registration-status', 'Thank you for registering your interest!'], ['contact-form', 'contact-status', 'Thanks for your message. This demo form does not send data.']].forEach(([formId, statusId, text]) => {
+			document.getElementById(formId).addEventListener('submit', event => {
+				event.preventDefault();
+				const status = document.getElementById(statusId);
+				status.textContent = text;
+				status.hidden = false;
+				event.currentTarget.reset();
+			});
+		});
+	</script>
+</body>
+</html>

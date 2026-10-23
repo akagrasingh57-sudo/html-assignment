@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Make room for your best work with Northstar, the calm, connected workspace for modern teams.">
+	<meta name="theme-color" content="#f8f8f5">
+	<title>Northstar — Find your team's flow</title>
+	<style>
+		:root {
+			color-scheme: light;
+			--ink: #17221d;
+			--muted: #66716b;
+			--green: #285a43;
+			--green-dark: #1d4332;
+			--lime: #d6f16b;
+			--paper: #f8f8f5;
+			--line: #e5e8e1;
+			--white: #fff;
+			--shadow: 0 24px 70px rgba(28, 48, 37, .12);
+			font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+		}
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body { margin: 0; background: var(--paper); color: var(--ink); line-height: 1.6; }
+		a { color: inherit; text-decoration: none; }
+		button, input { font: inherit; }
+		.container { width: min(1160px, calc(100% - 48px)); margin-inline: auto; }
+		.site-header { position: relative; z-index: 5; }
+		.nav { min-height: 82px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+		.brand { display: inline-flex; align-items: center; gap: 10px; font-size: 1.2rem; font-weight: 750; letter-spacing: -.04em; }
+		.brand-mark { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 10px 10px 10px 3px; color: var(--white); background: var(--green); font-size: 17px; }
+		.nav-links { display: flex; align-items: center; gap: 34px; color: #49554e; font-size: .92rem; }
+		.nav-links a:hover, .text-link:hover { color: var(--green); }
+		.nav-actions { display: flex; align-items: center; gap: 20px; font-size: .9rem; font-weight: 650; }
+		.button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 48px; padding: 0 21px; border: 1px solid transparent; border-radius: 9px; background: var(--green); color: var(--white); font-weight: 680; transition: background .2s, transform .2s; }
+		.button:hover { background: var(--green-dark); transform: translateY(-1px); }
+		.button-light { background: var(--white); color: var(--ink); border-color: var(--line); }
+		.button-light:hover { background: #f1f3ee; }
+		.menu-toggle { display: none; border: 0; background: transparent; color: var(--ink); font-size: 1.5rem; cursor: pointer; }
+		.hero { padding: 72px 0 84px; overflow: hidden; }
+		.hero-grid { display: grid; grid-template-columns: 1fr 1.02fr; align-items: center; gap: 58px; }
+		.eyebrow { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 22px; color: var(--green); font-size: .77rem; font-weight: 760; letter-spacing: .12em; text-transform: uppercase; }
+		.eyebrow::before { content: ""; width: 19px; height: 2px; background: #8fae4b; }
+		h1, h2, h3, p { margin-top: 0; }
+		h1 { max-width: 610px; margin-bottom: 21px; font-size: clamp(3rem, 5.4vw, 5.1rem); line-height: .99; letter-spacing: -.075em; font-weight: 680; }
+		h1 span { color: var(--green); }
+		.hero-copy { max-width: 495px; margin-bottom: 29px; color: var(--muted); font-size: 1.1rem; }
+		.hero-buttons { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+		.microcopy { margin: 16px 0 0; color: #78817b; font-size: .82rem; }
+		.visual { position: relative; min-height: 470px; display: grid; place-items: center; }
+		.visual-orbit { position: absolute; inset: 12px -20px 0 0; border-radius: 48% 52% 42% 58% / 52% 44% 56% 48%; background: #e9efdc; transform: rotate(-7deg); }
+		.dashboard { position: relative; width: min(100%, 525px); padding: 18px; border: 1px solid rgba(40, 90, 67, .12); border-radius: 18px; background: var(--white); box-shadow: var(--shadow); transform: rotate(1.5deg); }
+		.dash-top { display: flex; align-items: center; justify-content: space-between; padding: 2px 2px 17px; border-bottom: 1px solid #edf0eb; }
+		.dash-title { font-size: .87rem; font-weight: 750; }
+		.dash-dots { display: flex; gap: 5px; }
+		.dash-dots i { width: 7px; height: 7px; border-radius: 50%; background: #dfe4dc; }
+		.dash-body { display: grid; grid-template-columns: 1.1fr .9fr; gap: 13px; padding-top: 16px; }
+		.task-panel, .focus-panel { padding: 15px; border: 1px solid #edf0eb; border-radius: 12px; }
+		.panel-label { margin: 0 0 13px; color: #7b857e; font-size: .66rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+		.task { display: flex; align-items: flex-start; gap: 9px; padding: 9px 0; border-top: 1px solid #f0f2ee; font-size: .75rem; font-weight: 620; }
+		.check { flex: 0 0 15px; width: 15px; height: 15px; margin-top: 2px; border: 1.5px solid #9bb87c; border-radius: 5px; }
+		.task small { display: block; margin-top: 3px; color: #929b94; font-size: .64rem; font-weight: 450; }
+		.focus-panel { background: #f2f6e9; }
+		.progress-ring { width: 95px; height: 95px; display: grid; place-items: center; margin: 18px auto 12px; border-radius: 50%; background: conic-gradient(#54835c 0 73%, #dce7d1 73% 100%); }
+		.progress-ring::before { content: "73%"; width: 72px; height: 72px; display: grid; place-items: center; border-radius: inherit; background: #f2f6e9; font-size: 1rem; font-weight: 760; }
+		.focus-caption { margin: 0; text-align: center; color: #637166; font-size: .68rem; }
+		.floating-note { position: absolute; right: -18px; bottom: 18px; display: flex; align-items: center; gap: 11px; padding: 13px 16px; border-radius: 12px; background: var(--white); box-shadow: 0 12px 36px rgba(28,48,37,.12); font-size: .76rem; font-weight: 690; }
+		.avatar-stack { display: flex; padding-left: 5px; }
+		.avatar { width: 27px; height: 27px; display: grid; place-items: center; margin-left: -5px; border: 2px solid white; border-radius: 50%; background: #d6e8cc; color: #315842; font-size: .58rem; }
+		.avatar:nth-child(2) { background: #f3d5bd; color: #80553d; }
+		.avatar:nth-child(3) { background: #d9d7ef; color: #504b7c; }
+		.trust { padding: 28px 0 34px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); text-align: center; }
+		.trust p { margin-bottom: 20px; color: #808982; font-size: .77rem; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; }
+		.logo-row { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: clamp(25px, 6vw, 76px); color: #758078; }
+		.customer { font-size: 1.05rem; font-weight: 760; letter-spacing: -.045em; }
+		.customer:nth-child(2) { font-family: Georgia, serif; font-weight: 700; letter-spacing: -.02em; }
+		.customer:nth-child(3) { letter-spacing: .08em; font-size: .87rem; }
+		.customer:nth-child(4) { font-weight: 500; font-size: 1.16rem; }
+		.customer:nth-child(5) { font-style: italic; }
+		.section { padding: 100px 0; }
+		.section-heading { max-width: 660px; margin: 0 auto 48px; text-align: center; }
+		.section-heading .eyebrow { justify-content: center; }
+		h2 { margin-bottom: 15px; font-size: clamp(2.1rem, 4vw, 3.35rem); line-height: 1.08; letter-spacing: -.06em; font-weight: 670; }
+		.section-heading > p:last-child { margin-bottom: 0; color: var(--muted); }
+		.feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+		.feature-card { padding: 27px; border: 1px solid var(--line); border-radius: 14px; background: #fff; }
+		.feature-icon { width: 43px; height: 43px; display: grid; place-items: center; margin-bottom: 24px; border-radius: 12px; background: #eef4e5; color: var(--green); font-size: 1.15rem; }
+		.feature-card h3 { margin-bottom: 9px; font-size: 1.08rem; letter-spacing: -.025em; }
+		.feature-card p { margin-bottom: 0; color: var(--muted); font-size: .91rem; }
+		.quote-section { padding: 76px 0; background: #eaf0e2; }
+		.quote { max-width: 850px; margin: 0 auto; text-align: center; }
+		.quote-mark { color: #8faa69; font-family: Georgia, serif; font-size: 4rem; line-height: .8; }
+		blockquote { margin: 15px 0 23px; font-size: clamp(1.55rem, 3vw, 2.3rem); line-height: 1.3; letter-spacing: -.045em; font-weight: 560; }
+		.quote-author { color: #66716b; font-size: .87rem; }
+		.quote-author strong { color: var(--ink); }
+		.cta { padding: 88px 0; }
+		.cta-box { position: relative; overflow: hidden; padding: 58px 30px; border-radius: 20px; background: var(--green); color: white; text-align: center; }
+		.cta-box::before, .cta-box::after { content: ""; position: absolute; width: 220px; height: 220px; border: 1px solid rgba(255,255,255,.13); border-radius: 50%; }
+		.cta-box::before { top: -120px; left: -60px; }
+		.cta-box::after { right: -55px; bottom: -155px; width: 300px; height: 300px; }
+		.cta-box h2 { position: relative; max-width: 600px; margin: 0 auto 13px; }
+		.cta-box p { position: relative; margin-bottom: 24px; color: #d3e2d7; }
+		.cta-box .button { position: relative; background: var(--lime); color: var(--ink); }
+		.cta-box .button:hover { background: #e2f897; }
+		footer { padding: 27px 0; border-top: 1px solid var(--line); }
+		.footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; color: #78827b; font-size: .82rem; }
+		.footer-inner p { margin: 0; }
+		.footer-links { display: flex; gap: 22px; }
+		.footer-links a:hover { color: var(--green); }
+		@media (max-width: 900px) {
+			.nav-links { gap: 19px; }
+			.nav-actions .login { display: none; }
+			.hero { padding-top: 48px; }
+			.hero-grid { gap: 24px; grid-template-columns: 1fr 1fr; }
+			.visual { min-height: 390px; }
+			.floating-note { right: -7px; }
+		}
+		@media (max-width: 700px) {
+			.container { width: min(100% - 36px, 540px); }
+			.nav { min-height: 70px; }
+			.menu-toggle { display: block; }
+			.nav-links { position: absolute; top: 62px; left: 18px; right: 18px; display: none; align-items: stretch; gap: 0; padding: 10px 18px; border: 1px solid var(--line); border-radius: 12px; background: white; box-shadow: 0 12px 30px rgba(28,48,37,.1); }
+			.nav-links.is-open { display: flex; flex-direction: column; }
+			.nav-links a { padding: 11px 0; border-bottom: 1px solid #f0f2ee; }
+			.nav-links a:last-child { border: 0; }
+			.nav-actions { margin-left: auto; }
+			.nav-actions .button { min-height: 40px; padding-inline: 14px; font-size: .82rem; }
+			.hero { padding: 45px 0 55px; }
+			.hero-grid { grid-template-columns: 1fr; gap: 26px; }
+			h1 { max-width: 530px; font-size: clamp(3.1rem, 12vw, 4.6rem); }
+			.hero-copy { font-size: 1rem; }
+			.visual { width: min(100%, 520px); min-height: 370px; margin: 0 auto; }
+			.dashboard { padding: 13px; }
+			.floating-note { right: 0; bottom: 8px; }
+			.section { padding: 70px 0; }
+			.feature-grid { grid-template-columns: 1fr; }
+			.feature-card { padding: 24px; }
+			.feature-icon { margin-bottom: 18px; }
+			.trust { padding: 25px 0; }
+			.logo-row { gap: 20px 32px; }
+			.quote-section { padding: 60px 0; }
+			.cta { padding: 62px 0; }
+			.cta-box { padding: 48px 23px; }
+			.footer-inner { flex-direction: column; text-align: center; }
+		}
+		@media (max-width: 420px) {
+			.container { width: calc(100% - 30px); }
+			.brand { font-size: 1.08rem; }
+			.hero-buttons .button { width: 100%; }
+			.visual { min-height: 325px; }
+			.dash-body { gap: 8px; }
+			.task-panel, .focus-panel { padding: 10px; }
+			.task { font-size: .68rem; }
+			.floating-note { right: -2px; font-size: .68rem; }
+			.avatar { width: 24px; height: 24px; }
+		}
+		@media (prefers-reduced-motion: reduce) {
+			*, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+		}
+	</style>
+</head>
+<body>
+	<header class="site-header">
+		<nav class="nav container" aria-label="Main navigation">
+			<a class="brand" href="#home" aria-label="Northstar home"><span class="brand-mark" aria-hidden="true">✳</span>northstar</a>
+			<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">☰</button>
+			<div class="nav-links" id="nav-links">
+				<a href="#features">Features</a>
+				<a href="#story">Our story</a>
+				<a href="#get-started">Pricing</a>
+			</div>
+			<div class="nav-actions">
+				<a class="login" href="#get-started">Log in</a>
+				<a class="button" href="#get-started">Get started <span aria-hidden="true">→</span></a>
+			</div>
+		</nav>
+	</header>
+
+	<main>
+		<section class="hero" id="home">
+			<div class="hero-grid container">
+				<div>
+					<p class="eyebrow">A clearer way to work</p>
+					<h1>Make room for your <span>best work.</span></h1>
+					<p class="hero-copy">Bring your team's plans, projects, and people into one calm, connected workspace. Less busywork. More of the work that matters.</p>
+					<div class="hero-buttons">
+						<a class="button" href="#get-started">Start your free trial <span aria-hidden="true">→</span></a>
+						<a class="button button-light" href="#features"><span aria-hidden="true">▷</span> See how it works</a>
+					</div>
+					<p class="microcopy">Free for 14 days · No credit card required</p>
+				</div>
+				<div class="visual" aria-label="Preview of the Northstar team workspace">
+					<div class="visual-orbit" aria-hidden="true"></div>
+					<div class="dashboard">
+						<div class="dash-top">
+							<span class="dash-title">Monday, made manageable</span>
+							<span class="dash-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+						</div>
+						<div class="dash-body">
+							<div class="task-panel">
+								<p class="panel-label">Team priorities</p>
+								<div class="task"><span class="check"></span><span>Launch new homepage<small>Design · Today</small></span></div>
+								<div class="task"><span class="check"></span><span>Review customer notes<small>Research · 2:30 PM</small></span></div>
+								<div class="task"><span class="check"></span><span>Plan the next sprint<small>Team · Tomorrow</small></span></div>
+							</div>
+							<div class="focus-panel">
+								<p class="panel-label">Weekly momentum</p>
+								<div class="progress-ring" aria-label="73 percent complete"></div>
+								<p class="focus-caption">You're right on track</p>
+							</div>
+						</div>
+					</div>
+					<div class="floating-note">
+						<span class="avatar-stack" aria-hidden="true"><span class="avatar">AM</span><span class="avatar">JL</span><span class="avatar">SK</span></span>
+						<span>Good work, together ✨</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="trust" aria-label="Trusted by teams">
+			<div class="container">
+				<p>Good company for teams doing great things</p>
+				<div class="logo-row" aria-label="Customer names">
+					<span class="customer">orbit</span><span class="customer">Fieldnote</span><span class="customer">NORTH &amp; CO.</span><span class="customer">morrow</span><span class="customer">kindred</span>
+				</div>
+			</div>
+		</section>
+
+		<section class="section" id="features">
+			<div class="container">
+				<div class="section-heading">
+					<p class="eyebrow">Everything in its place</p>
+					<h2>Your work, working better.</h2>
+					<p>Northstar keeps the moving pieces together, so your team can spend less time looking for answers and more time moving forward.</p>
+				</div>
+				<div class="feature-grid">
+					<article class="feature-card">
+						<div class="feature-icon" aria-hidden="true">↗</div>
+						<h3>See the whole picture</h3>
+						<p>Connect projects and priorities in a shared view that makes the next step clear to everyone.</p>
+					</article>
+					<article class="feature-card">
+						<div class="feature-icon" aria-hidden="true">⌁</div>
+						<h3>Find your team's flow</h3>
+						<p>Simple, flexible workflows fit the way your people already think and get things done.</p>
+					</article>
+					<article class="feature-card">
+						<div class="feature-icon" aria-hidden="true">✳</div>
+						<h3>Make space for focus</h3>
+						<p>Bring the right conversations and decisions together, without adding more noise to the day.</p>
+					</article>
+				</div>
+			</div>
+		</section>
+
+		<section class="quote-section" id="story">
+			<div class="container quote">
+				<div class="quote-mark" aria-hidden="true">“</div>
+				<blockquote>Northstar helped us trade a dozen disconnected tools for one place where our best ideas actually happen.</blockquote>
+				<p class="quote-author"><strong>Jordan Lee</strong> · Operations Lead, Fieldnote</p>
+			</div>
+		</section>
+
+		<section class="cta" id="get-started">
+			<div class="container">
+				<div class="cta-box">
+					<h2>Ready for a little more breathing room?</h2>
+					<p>Bring your people and your priorities together. Your first 14 days are on us.</p>
+					<a class="button" href="mailto:hello@northstar.example">Try Northstar free <span aria-hidden="true">→</span></a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer>
+		<div class="container footer-inner">
+			<a class="brand" href="#home"><span class="brand-mark" aria-hidden="true">✳</span>northstar</a>
+			<p>© <span id="year">2025</span> Northstar. Built for better work.</p>
+			<div class="footer-links"><a href="mailto:hello@northstar.example">Contact</a><a href="#get-started">Privacy</a></div>
+		</div>
+	</footer>
+
+	<script>
+		const menuButton = document.querySelector('.menu-toggle');
+		const navigation = document.querySelector('#nav-links');
+
+		menuButton.addEventListener('click', () => {
+			const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+			menuButton.setAttribute('aria-expanded', String(!isOpen));
+			menuButton.setAttribute('aria-label', isOpen ? 'Open menu' : 'Close menu');
+			navigation.classList.toggle('is-open', !isOpen);
+		});
+
+		navigation.addEventListener('click', (event) => {
+			if (event.target.closest('a')) {
+				menuButton.setAttribute('aria-expanded', 'false');
+				menuButton.setAttribute('aria-label', 'Open menu');
+				navigation.classList.remove('is-open');
+			}
+		});
+
+		document.querySelector('#year').textContent = new Date().getFullYear();
+	</script>
+</body>
+</html>

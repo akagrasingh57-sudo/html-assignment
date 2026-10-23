@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Three Card Variants</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		body {
+			margin: 0;
+			min-height: 100vh;
+			padding: 40px 20px;
+			background: #f1f5f9;
+			font-family: Arial, sans-serif;
+		}
+
+		.card-container {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			gap: 24px;
+		}
+
+		.card {
+			width: 280px;
+			padding: 24px;
+		}
+
+		.card h2 {
+			margin-top: 0;
+		}
+
+		.card-rounded {
+			border-radius: 8px;
+			background: #ffffff;
+			box-shadow: 0 4px 12px #0f172a1a;
+		}
+
+		.card-pill {
+			border-radius: 28px;
+			background: #dbeafe;
+			border: 2px solid #60a5fa;
+		}
+
+		.card-accent {
+			border-radius: 4px 32px 4px 32px;
+			background: #dcfce7;
+			border-left: 6px solid #16a34a;
+		}
+	</style>
+</head>
+<body>
+	<main class="card-container">
+		<article class="card card-rounded">
+			<h2>Classic Card</h2>
+			<p>A clean white background with gently rounded corners.</p>
+		</article>
+
+		<article class="card card-pill">
+			<h2>Soft Blue Card</h2>
+			<p>A pale blue background, blue border, and extra-rounded corners.</p>
+		</article>
+
+		<article class="card card-accent">
+			<h2>Fresh Green Card</h2>
+			<p>A light green background with alternating rounded corners and an accent edge.</p>
+		</article>
+	</main>
+</body>
+</html>

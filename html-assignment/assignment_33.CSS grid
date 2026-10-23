@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid Project</title>
+    <style>
+      :root {
+        --bg: #f5f7fb;
+        --panel: #ffffff;
+        --panel-2: #eef4ff;
+        --primary: #5b6cff;
+        --primary-dark: #3f4fd8;
+        --secondary: #f4d35e;
+        --text: #1d2433;
+        --muted: #718096;
+        --line: #e6ebf3;
+        --success: #28c76f;
+        --warning: #ff9f43;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(135deg, #eef4ff 0%, #f7f9fc 100%);
+        color: var(--text);
+      }
+
+      .page {
+        max-width: 1280px;
+        margin: 32px auto;
+        padding: 0 24px 40px;
+      }
+
+      .dashboard {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        grid-template-areas:
+          "header header"
+          "sidebar main";
+        gap: 24px;
+      }
+
+      .header {
+        grid-area: header;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 18px 24px;
+        display: grid;
+        grid-template-columns: 1fr auto auto;
+        align-items: center;
+        gap: 20px;
+        box-shadow: 0 16px 40px rgba(31, 41, 55, 0.06);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 700;
+        font-size: 1.2rem;
+      }
+
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+        background: linear-gradient(135deg, var(--primary), #8ea1ff);
+        border-radius: 10px;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-weight: 700;
+      }
+
+      .top-nav {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .nav-link {
+        text-decoration: none;
+        color: var(--muted);
+        transition: 0.2s ease;
+      }
+
+      .nav-link:hover {
+        color: var(--primary);
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .btn {
+        border: none;
+        border-radius: 12px;
+        padding: 12px 18px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        cursor: pointer;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: #fff;
+        box-shadow: 0 12px 22px rgba(91, 108, 255, 0.25);
+      }
+
+      .profile {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ffc371, #ff7e5f);
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-weight: 700;
+      }
+
+      .sidebar {
+        grid-area: sidebar;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 24px 18px;
+        box-shadow: 0 16px 40px rgba(31, 41, 55, 0.05);
+      }
+
+      .side-group {
+        margin-bottom: 22px;
+      }
+
+      .side-label {
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 14px 10px;
+      }
+
+      .menu {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 10px;
+      }
+
+      .menu-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .menu-item.active {
+        background: var(--panel-2);
+        color: var(--primary-dark);
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--primary);
+      }
+
+      .side-card {
+        background: linear-gradient(135deg, #f4f6ff 0%, #edf7ff 100%);
+        border: 1px solid #dfe9ff;
+        border-radius: 18px;
+        padding: 18px 16px;
+      }
+
+      .side-card h3 {
+        margin: 0 0 8px;
+        font-size: 1rem;
+      }
+
+      .side-card p {
+        margin: 0 0 16px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .main {
+        grid-area: main;
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 24px;
+      }
+
+      .hero {
+        grid-column: span 12;
+        background: linear-gradient(135deg, #1d2433 0%, #2d3a58 100%);
+        border-radius: 28px;
+        padding: 28px 30px;
+        color: #fff;
+        display: grid;
+        grid-template-columns: 1.5fr 0.9fr;
+        gap: 18px;
+        align-items: center;
+      }
+
+      .hero h1 {
+        margin: 0 0 12px;
+        font-size: clamp(2rem, 2.8vw, 3rem);
+      }
+
+      .hero p {
+        margin: 0 0 22px;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .hero .btn-light {
+        background: rgba(255, 255, 255, 0.12);
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .metric-box {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 18px;
+        padding: 20px;
+        display: grid;
+        gap: 12px;
+      }
+
+      .metric-box .mini {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.75);
+      }
+
+      .metric-box .value {
+        font-size: 2.2rem;
+        font-weight: 700;
+      }
+
+      .metric-box .trend {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(40, 199, 111, 0.15);
+        color: #9dffd1;
+        padding: 8px 10px;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        width: fit-content;
+      }
+
+      .stats {
+        grid-column: span 12;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 20px;
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 22px 20px;
+        box-shadow: 0 16px 30px rgba(15, 23, 42, 0.03);
+      }
+
+      .stat {
+        display: grid;
+        gap: 14px;
+      }
+
+      .stat-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .stat-value {
+        font-size: clamp(1.7rem, 2.4vw, 2.3rem);
+        font-weight: 700;
+      }
+
+      .stat-footer {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.82rem;
+      }
+
+      .up {
+        color: var(--success);
+      }
+
+      .down {
+        color: #f05d5d;
+      }
+
+      .chart-card {
+        grid-column: span 8;
+      }
+
+      .chart-card h3,
+      .activity-card h3,
+      .project-card h3 {
+        margin: 0 0 18px;
+        font-size: 1.1rem;
+      }
+
+      .chart-area {
+        height: 250px;
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        grid-template-rows: repeat(5, 1fr);
+        gap: 12px 18px;
+        align-items: end;
+        padding-top: 20px;
+      }
+
+      .bar {
+        background: linear-gradient(180deg, #8ea1ff 0%, var(--primary) 100%);
+        border-radius: 10px 10px 0 0;
+        height: var(--h);
+        box-shadow: 0 10px 18px rgba(91, 108, 255, 0.18);
+      }
+
+      .activity-card {
+        grid-column: span 4;
+      }
+
+      .activity-list {
+        display: grid;
+        gap: 16px;
+      }
+
+      .activity-item {
+        display: grid;
+        grid-template-columns: 42px 1fr auto;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        font-size: 1.1rem;
+        font-weight: 700;
+      }
+
+      .icon.blue { background: #dfe7ff; color: var(--primary); }
+      .icon.green { background: #dff9ea; color: var(--success); }
+      .icon.orange { background: #fff0dd; color: var(--warning); }
+
+      .activity-meta {
+        display: grid;
+        gap: 4px;
+      }
+
+      .activity-meta strong {
+        font-size: 0.96rem;
+      }
+
+      .activity-meta span {
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+
+      .pill {
+        font-size: 0.75rem;
+        padding: 7px 10px;
+        border-radius: 999px;
+        font-weight: 700;
+      }
+
+      .pill.completed {
+        background: #dff9ea;
+        color: var(--success);
+      }
+
+      .pill.pending {
+        background: #fff0dd;
+        color: var(--warning);
+      }
+
+      .project-card {
+        grid-column: span 12;
+      }
+
+      .projects {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .project {
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 18px;
+        background: #fbfcff;
+      }
+
+      .project-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 18px;
+      }
+
+      .project .badge {
+        padding: 7px 10px;
+        background: var(--panel-2);
+        border-radius: 10px;
+        color: var(--primary-dark);
+        font-size: 0.75rem;
+        font-weight: 700;
+      }
+
+      .project h4 {
+        margin: 0 0 12px;
+        font-size: 1.08rem;
+      }
+
+      .project p {
+        margin: 0 0 20px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .progress {
+        width: 100%;
+        height: 10px;
+        background: #edf1f7;
+        border-radius: 999px;
+        overflow: hidden;
+        margin-bottom: 18px;
+      }
+
+      .progress > span {
+        display: block;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--primary), #8ea1ff);
+      }
+
+      .project-meta {
+        display: flex;
+        justify-content: space-between;
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      @media (max-width: 980px) {
+        .dashboard {
+          grid-template-columns: 1fr;
+          grid-template-areas:
+            "header"
+            "sidebar"
+            "main";
+        }
+
+        .main {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .chart-card,
+        .activity-card,
+        .project-card,
+        .hero,
+        .stats {
+          grid-column: span 2;
+        }
+
+        .stats {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .projects {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .page {
+          padding: 0 16px 24px;
+        }
+
+        .header {
+          grid-template-columns: 1fr;
+          justify-items: start;
+        }
+
+        .top-nav,
+        .header-actions {
+          width: 100%;
+          justify-content: space-between;
+          flex-wrap: wrap;
+        }
+
+        .main {
+          grid-template-columns: 1fr;
+        }
+
+        .stats {
+          grid-template-columns: 1fr;
+        }
+
+        .chart-card,
+        .activity-card,
+        .project-card,
+        .hero,
+        .stats {
+          grid-column: span 1;
+        }
+
+        .hero {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="dashboard">
+        <header class="header">
+          <div class="brand">
+            <div class="brand-mark">G</div>
+            GridFlow
+          </div>
+
+          <nav class="top-nav" aria-label="Main navigation">
+            <a href="#" class="nav-link">Overview</a>
+            <a href="#" class="nav-link">Projects</a>
+            <a href="#" class="nav-link">Reports</a>
+            <a href="#" class="nav-link">Messages</a>
+          </nav>
+
+          <div class="header-actions">
+            <button class="btn btn-primary">Create</button>
+            <div class="profile">AK</div>
+          </div>
+        </header>
+
+        <aside class="sidebar">
+          <div class="side-group">
+            <p class="side-label">Workspace</p>
+            <ul class="menu">
+              <li class="menu-item active"><span class="dot"></span>Dashboard</li>
+              <li class="menu-item"><span class="dot"></span>Analytics</li>
+              <li class="menu-item"><span class="dot"></span>Tasks</li>
+              <li class="menu-item"><span class="dot"></span>Calendar</li>
+              <li class="menu-item"><span class="dot"></span>Reports</li>
+            </ul>
+          </div>
+
+          <div class="side-group">
+            <p class="side-label">Team</p>
+            <ul class="menu">
+              <li class="menu-item"><span class="dot"></span>Designers</li>
+              <li class="menu-item"><span class="dot"></span>Developers</li>
+              <li class="menu-item"><span class="dot"></span>Marketing</li>
+            </ul>
+          </div>
+
+          <div class="side-card">
+            <h3>Project update</h3>
+            <p>3 milestones completed this week. Keep the momentum going.</p>
+            <button class="btn btn-primary" style="width: 100%;">View brief</button>
+          </div>
+        </aside>
+
+        <main class="main">
+          <section class="hero">
+            <div>
+              <h1>Build smarter with a flexible grid.</h1>
+              <p>
+                Organize projects, track priorities, and monitor performance from
+                a single dashboard designed around clear, responsive layouts.
+              </p>
+              <div class="hero-actions">
+                <button class="btn btn-primary">Start project</button>
+                <button class="btn btn-light">View demo</button>
+              </div>
+            </div>
+
+            <div class="metric-box">
+              <div class="mini">
+                <span>Monthly growth</span>
+                <span>+18.2%</span>
+              </div>
+              <div class="value">$42.8K</div>
+              <div class="trend">▲ 12.4% this month</div>
+            </div>
+          </section>
+
+          <section class="stats" aria-label="Key statistics">
+            <article class="card stat">
+              <div class="stat-header">
+                <span>Revenue</span>
+                <span class="pill completed">Live</span>
+              </div>
+              <div class="stat-value">$124.8K</div>
+              <div class="stat-footer"><span class="up">▲ 8.5%</span> vs last month</div>
+            </article>
+
+            <article class="card stat">
+              <div class="stat-header">
+                <span>New clients</span>
+                <span class="pill pending">+24</span>
+              </div>
+              <div class="stat-value">387</div>
+              <div class="stat-footer"><span class="up">▲ 6.2%</span> this quarter</div>
+            </article>
+
+            <article class="card stat">
+              <div class="stat-header">
+                <span>Conversion</span>
+                <span class="pill completed">Stable</span>
+              </div>
+              <div class="stat-value">4.7%</div>
+              <div class="stat-footer"><span class="up">▲ 1.4%</span> from last week</div>
+            </article>
+
+            <article class="card stat">
+              <div class="stat-header">
+                <span>Churn</span>
+                <span class="pill pending">Watch</span>
+              </div>
+              <div class="stat-value">2.1%</div>
+              <div class="stat-footer"><span class="down">▼ 0.6%</span> this month</div>
+            </article>
+          </section>
+
+          <section class="card chart-card">
+            <h3>Performance overview</h3>
+            <div class="chart-area" aria-label="Monthly performance chart">
+              <div class="bar" style="--h: 45%;"></div>
+              <div class="bar" style="--h: 56%;"></div>
+              <div class="bar" style="--h: 60%;"></div>
+              <div class="bar" style="--h: 72%;"></div>
+              <div class="bar" style="--h: 65%;"></div>
+              <div class="bar" style="--h: 80%;"></div>
+              <div class="bar" style="--h: 92%;"></div>
+            </div>
+          </section>
+
+          <section class="card activity-card">
+            <h3>Recent activity</h3>
+            <div class="activity-list">
+              <div class="activity-item">
+                <div class="icon blue">D</div>
+                <div class="activity-meta">
+                  <strong>Design review</strong>
+                  <span>2 hours ago</span>
+                </div>
+                <span class="pill completed">Done</span>
+              </div>
+
+              <div class="activity-item">
+                <div class="icon green">A</div>
+                <div class="activity-meta">
+                  <strong>Analytics synced</strong>
+                  <span>Yesterday</span>
+                </div>
+                <span class="pill completed">Done</span>
+              </div>
+
+              <div class="activity-item">
+                <div class="icon orange">C</div>
+                <div class="activity-meta">
+                  <strong>Campaign launch</strong>
+                  <span>3 days ago</span>
+                </div>
+                <span class="pill pending">Pending</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="card project-card">
+            <h3>Current projects</h3>
+            <div class="projects">
+              <article class="project">
+                <div class="project-top">
+                  <div class="badge">Website</div>
+                  <span class="up">72%</span>
+                </div>
+                <h4>Brand refresh</h4>
+                <p>Landing page improvements and messaging updates for the new campaign.</p>
+                <div class="progress"><span style="width: 72%"></span></div>
+                <div class="project-meta">
+                  <span>12 tasks</span>
+                  <span>Due in 5 days</span>
+                </div>
+              </article>
+
+              <article class="project">
+                <div class="project-top">
+                  <div class="badge">Mobile</div>
+                  <span class="up">48%</span>
+                </div>
+                <h4>App dashboard</h4>
+                <p>Enhancing user analytics, reports, and action center widgets.</p>
+                <div class="progress"><span style="width: 48%"></span></div>
+                <div class="project-meta">
+                  <span>9 tasks</span>
+                  <span>Due in 8 days</span>
+                </div>
+              </article>
+
+              <article class="project">
+                <div class="project-top">
+                  <div class="badge">Marketing</div>
+                  <span class="up">89%</span>
+                </div>
+                <h4>Growth sprint</h4>
+                <p>Social media funnel and acquisition experiments across the Q3 plan.</p>
+                <div class="progress"><span style="width: 89%"></span></div>
+                <div class="project-meta">
+                  <span>15 tasks</span>
+                  <span>Due tomorrow</span>
+                </div>
+              </article>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>

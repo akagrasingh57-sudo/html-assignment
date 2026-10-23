@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Profile and Product Cards</title>
+	<style>
+		* { box-sizing: border-box; }
+		body {
+			margin: 0;
+			min-height: 100vh;
+			padding: 48px 20px;
+			display: grid;
+			place-items: center;
+			background: #f3f5f1;
+			color: #252b25;
+			font-family: Arial, Helvetica, sans-serif;
+		}
+		.cards {
+			width: min(100%, 820px);
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 24px;
+		}
+		.card {
+			overflow: hidden;
+			background: #fff;
+			border: 1px solid #e3e8df;
+			border-radius: 18px;
+			box-shadow: 0 12px 32px #26351f12;
+		}
+		.profile { padding: 28px; }
+		.label {
+			margin: 0 0 22px;
+			color: #68805f;
+			font-size: 11px;
+			font-weight: 700;
+			letter-spacing: .13em;
+			text-transform: uppercase;
+		}
+		.identity { display: flex; align-items: center; gap: 15px; }
+		.avatar {
+			width: 62px;
+			height: 62px;
+			flex: none;
+			display: grid;
+			place-items: center;
+			border-radius: 50%;
+			background: #e1eadb;
+			color: #42603b;
+			font-size: 20px;
+			font-weight: 700;
+		}
+		h1, h2 { margin: 0; letter-spacing: -.04em; }
+		h1 { font-size: 22px; }
+		.role { margin: 5px 0 0; color: #777f75; font-size: 13px; }
+		.bio { margin: 22px 0; color: #60685e; font-size: 14px; line-height: 1.65; }
+		.stats {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			padding: 16px 0;
+			border-block: 1px solid #edf0eb;
+			text-align: center;
+		}
+		.stats div + div { border-left: 1px solid #edf0eb; }
+		.stats strong, .stats span { display: block; }
+		.stats strong { font-size: 17px; }
+		.stats span { margin-top: 4px; color: #858b82; font-size: 11px; }
+		button {
+			min-height: 44px;
+			border: 0;
+			border-radius: 9px;
+			background: #365a37;
+			color: #fff;
+			font: inherit;
+			font-size: 14px;
+			font-weight: 700;
+			cursor: pointer;
+		}
+		button:hover { background: #29482d; }
+		button:focus-visible { outline: 3px solid #a7c49c; outline-offset: 3px; }
+		.profile button { width: 100%; margin-top: 20px; }
+		.product-image {
+			height: 225px;
+			display: grid;
+			place-items: center;
+			background: linear-gradient(140deg, #e8efe3, #cbd9c2);
+		}
+		.bottle {
+			width: 84px;
+			height: 132px;
+			position: relative;
+			display: grid;
+			place-items: center;
+			border: 1px solid #ffffffbd;
+			border-radius: 15px 15px 20px 20px;
+			background: linear-gradient(90deg, #e8e7d8, #fffdf2 48%, #e3e3d5);
+			box-shadow: 0 16px 24px #31432d30;
+			color: #53624d;
+			text-align: center;
+			font-family: Georgia, serif;
+			font-size: 12px;
+			line-height: 1.3;
+		}
+		.bottle::before {
+			content: "";
+			position: absolute;
+			top: -19px;
+			width: 30px;
+			height: 20px;
+			border-radius: 4px 4px 0 0;
+			background: #53624d;
+		}
+		.product-info { padding: 23px 25px 25px; }
+		.product-meta { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+		.product-meta .label { margin: 0; }
+		.rating { color: #a87324; font-size: 12px; font-weight: 700; white-space: nowrap; }
+		h2 { margin-top: 14px; font-size: 22px; }
+		.description { margin: 9px 0 18px; color: #727a70; font-size: 13px; line-height: 1.6; }
+		.purchase { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 17px; border-top: 1px solid #edf0eb; }
+		.price { font-size: 21px; font-weight: 700; white-space: nowrap; }
+		.price small { color: #858b82; font-size: 11px; font-weight: 400; }
+		.purchase button { padding: 0 16px; }
+		@media (max-width: 620px) {
+			body { padding: 28px 16px; }
+			.cards { max-width: 390px; grid-template-columns: 1fr; }
+		}
+	</style>
+</head>
+<body>
+	<main class="cards" aria-label="Profile and product cards">
+		<article class="card profile" aria-labelledby="profile-name">
+			<p class="label">Creator profile</p>
+			<div class="identity">
+				<div class="avatar" aria-hidden="true">AM</div>
+				<div>
+					<h1 id="profile-name">Avery Morgan</h1>
+					<p class="role">Designer &amp; maker · Portland, OR</p>
+				</div>
+			</div>
+			<p class="bio">I create thoughtful everyday objects inspired by nature, slow living, and the beauty of simple materials.</p>
+			<div class="stats" aria-label="Profile statistics">
+				<div><strong>28</strong><span>Projects</span></div>
+				<div><strong>4.9</strong><span>Rating</span></div>
+				<div><strong>1.2k</strong><span>Followers</span></div>
+			</div>
+			<button type="button">View profile</button>
+		</article>
+
+		<article class="card" aria-labelledby="product-name">
+			<div class="product-image" role="img" aria-label="Minimal botanical skincare bottle">
+				<div class="bottle" aria-hidden="true">FIELD<br>BOTANICALS</div>
+			</div>
+			<div class="product-info">
+				<div class="product-meta">
+					<p class="label">Daily essentials</p>
+					<span class="rating" aria-label="Rated 4.9 out of 5">★ 4.9 (86)</span>
+				</div>
+				<h2 id="product-name">Botanical face oil</h2>
+				<p class="description">A lightweight, nourishing blend made with cold-pressed plant oils.</p>
+				<div class="purchase">
+					<span class="price">$32 <small>/ 30 ml</small></span>
+					<button type="button">Add to bag</button>
+				</div>
+			</div>
+		</article>
+	</main>
+</body>
+</html>

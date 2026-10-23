@@ -1,0 +1,132 @@
+```html
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="A responsive community garden project page.">
+	<title>Rooted — Community Garden</title>
+	<style>
+		:root {
+			color-scheme: light;
+			--ink: #18352b;
+			--muted: #53665d;
+			--paper: #fbfaf5;
+			--green: #246347;
+			--lime: #d8ef9f;
+			--line: #dfe5d9;
+			font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+		}
+
+		* { box-sizing: border-box; }
+		html { scroll-behavior: smooth; }
+		body { margin: 0; background: var(--paper); color: var(--ink); line-height: 1.6; }
+		img { display: block; max-width: 100%; }
+		a { color: inherit; }
+		.container { width: min(1120px, calc(100% - 3rem)); margin-inline: auto; }
+
+		.site-header { border-bottom: 1px solid var(--line); background: var(--paper); }
+		.nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
+		.brand { color: var(--green); font-size: 1.35rem; font-weight: 800; letter-spacing: -.04em; text-decoration: none; }
+		.nav-links { display: flex; align-items: center; gap: clamp(1rem, 3vw, 2rem); margin: 0; padding: 0; list-style: none; }
+		.nav-links a { text-decoration: none; font-size: .95rem; font-weight: 650; }
+		.nav-links a:hover, .nav-links a:focus-visible { text-decoration: underline; text-underline-offset: .25em; }
+
+		.hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(280px, .95fr); gap: clamp(2rem, 6vw, 5.5rem); align-items: center; padding-block: clamp(3.5rem, 9vw, 7rem); }
+		.eyebrow { margin: 0 0 .8rem; color: var(--green); font-size: .78rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+		h1, h2, p { margin-top: 0; }
+		h1 { max-width: 11ch; margin-bottom: 1.2rem; font-size: clamp(2.65rem, 6vw, 5.2rem); line-height: .99; letter-spacing: -.065em; }
+		.hero-copy { max-width: 36rem; color: var(--muted); font-size: clamp(1rem, 1.7vw, 1.15rem); }
+		.button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; margin-top: .8rem; padding: .75rem 1.2rem; border-radius: 999px; background: var(--green); color: white; font-weight: 750; text-decoration: none; }
+		.button:hover { background: #174a34; }
+		.hero-image { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 1.4rem; }
+
+		.impact { padding-block: clamp(3rem, 7vw, 5.5rem); background: #eef2e7; }
+		.section-heading { max-width: 42rem; margin-bottom: 2rem; }
+		h2 { margin-bottom: .5rem; font-size: clamp(1.8rem, 3.5vw, 2.7rem); line-height: 1.1; letter-spacing: -.04em; }
+		.section-heading p, .card p { color: var(--muted); }
+		.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+		.card { min-width: 0; padding: clamp(1.25rem, 2.8vw, 2rem); border: 1px solid var(--line); border-radius: 1rem; background: white; }
+		.card-number { display: block; margin-bottom: .6rem; color: var(--green); font-size: 2rem; font-weight: 800; letter-spacing: -.06em; }
+		.card h3 { margin: 0 0 .4rem; font-size: 1.1rem; }
+		.card p { margin-bottom: 0; }
+
+		.join { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding-block: clamp(3rem, 7vw, 5rem); }
+		.join h2 { max-width: 15ch; margin-bottom: 0; }
+		.join .button { flex: 0 0 auto; margin-top: 0; background: var(--lime); color: var(--ink); }
+		.join .button:hover { background: #c9e485; }
+		footer { padding-block: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+		footer p { margin: 0; }
+		:focus-visible { outline: 3px solid #bd7917; outline-offset: 4px; }
+
+		@media (max-width: 760px) {
+			.container { width: min(100% - 2rem, 600px); }
+			.nav { min-height: auto; align-items: flex-start; flex-direction: column; gap: .5rem; padding-block: 1rem; }
+			.nav-links { width: 100%; flex-wrap: wrap; gap: .35rem 1.2rem; }
+			.hero { grid-template-columns: 1fr; gap: 2rem; padding-block: 3rem; }
+			.hero-image { max-height: 360px; }
+			.cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+		}
+
+		@media (max-width: 480px) {
+			.container { width: calc(100% - 1.5rem); }
+			.cards { grid-template-columns: 1fr; }
+			.join { align-items: flex-start; flex-direction: column; gap: 1rem; }
+			.nav-links { gap: .35rem 1rem; }
+			.nav-links a { font-size: .9rem; }
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			html { scroll-behavior: auto; }
+			*, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+		}
+	</style>
+</head>
+<body>
+	<header class="site-header">
+		<nav class="nav container" aria-label="Main navigation">
+			<a class="brand" href="#home">Rooted<span aria-hidden="true">.</span></a>
+			<ul class="nav-links">
+				<li><a href="#mission">Our mission</a></li>
+				<li><a href="#impact">Our impact</a></li>
+				<li><a href="#join">Get involved</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<section class="hero container" id="home" aria-labelledby="hero-title">
+			<div>
+				<p class="eyebrow">Growing together since 2018</p>
+				<h1 id="hero-title">A little more green, together.</h1>
+				<p class="hero-copy">We turn overlooked city spaces into thriving community gardens, bringing fresh food, new skills, and neighbors together.</p>
+				<a class="button" href="#join">Find your place</a>
+			</div>
+			<img class="hero-image" src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?auto=format&fit=crop&w=1200&q=85" alt="A gardener tending leafy plants in a sunny garden" width="1200" height="900">
+		</section>
+
+		<section class="impact" id="impact" aria-labelledby="impact-title">
+			<div class="container">
+				<div class="section-heading" id="mission">
+					<p class="eyebrow">What we grow</p>
+					<h2 id="impact-title">Healthy neighborhoods start with shared spaces.</h2>
+					<p>Our gardens make it easier for everyone to connect with nature and one another.</p>
+				</div>
+				<div class="cards">
+					<article class="card"><span class="card-number">12</span><h3>Neighborhood gardens</h3><p>Welcoming green spaces, built and cared for by local residents.</p></article>
+					<article class="card"><span class="card-number">840+</span><h3>Community members</h3><p>Neighbors learning, sharing harvests, and growing new friendships.</p></article>
+					<article class="card"><span class="card-number">2.4t</span><h3>Fresh food grown</h3><p>Seasonal produce shared with families across our community.</p></article>
+				</div>
+			</div>
+		</section>
+
+		<section class="join container" id="join" aria-labelledby="join-title">
+			<h2 id="join-title">Good things grow when we grow them together.</h2>
+			<a class="button" href="mailto:hello@rooted.example">Join the community</a>
+		</section>
+	</main>
+
+	<footer><div class="container"><p>© 2025 Rooted Community Garden · Made for everyone in the neighborhood.</p></div></footer>
+</body>
+</html>
+```

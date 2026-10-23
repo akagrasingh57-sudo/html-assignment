@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Northstar — Make room for better work</title>
+	<style>
+		:root {
+			color-scheme: light;
+			--ink: #18251f;
+			--muted: #627168;
+			--paper: #f7f8f3;
+			--green: #246b4b;
+			--lime: #d7ef8a;
+		}
+
+		* { box-sizing: border-box; }
+
+		body {
+			margin: 0;
+			background: var(--paper);
+			color: var(--ink);
+			font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+			line-height: 1.5;
+		}
+
+		a { color: inherit; text-decoration: none; }
+
+		.page-shell { width: min(1160px, calc(100% - 48px)); margin-inline: auto; }
+
+		/* Flexbox keeps the brand, navigation, and action aligned in one row. */
+		.site-header {
+			min-height: 82px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 28px;
+		}
+
+		.brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: -.04em; }
+		.brand-mark { display: grid; place-items: center; width: 31px; height: 31px; border-radius: 10px; background: var(--green); color: white; font-size: 17px; }
+		.nav-links { display: flex; align-items: center; gap: 32px; color: #526158; font-size: 14px; }
+		.nav-links a:hover, .text-link:hover { color: var(--green); }
+		.header-cta { padding: 11px 18px; border: 1px solid #d9ded7; border-radius: 999px; font-size: 14px; font-weight: 650; }
+
+		/* Grid gives the hero copy and visual equal, responsive columns. */
+		.hero {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			align-items: center;
+			gap: clamp(36px, 7vw, 92px);
+			padding-block: 72px 88px;
+		}
+
+		.eyebrow { display: inline-flex; align-items: center; gap: 8px; color: var(--green); font-size: 12px; font-weight: 750; letter-spacing: .12em; text-transform: uppercase; }
+		.eyebrow::before { content: ""; width: 18px; height: 2px; background: currentColor; }
+		h1 { max-width: 570px; margin: 18px 0 20px; font-size: clamp(42px, 5.7vw, 72px); line-height: .99; letter-spacing: -.065em; }
+		.hero-copy > p { max-width: 480px; margin: 0; color: var(--muted); font-size: 17px; }
+		.hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 20px; margin-top: 30px; }
+		.button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 21px; border-radius: 999px; background: var(--green); color: white; font-size: 14px; font-weight: 700; transition: transform .2s, background .2s; }
+		.button:hover { background: #174d35; transform: translateY(-2px); }
+		.text-link { font-size: 14px; font-weight: 650; }
+
+		.hero-art {
+			position: relative;
+			min-height: 390px;
+			overflow: hidden;
+			border-radius: 28px;
+			background: #e4edcf;
+			isolation: isolate;
+		}
+		.hero-art::before { content: ""; position: absolute; width: 370px; height: 370px; top: 20px; right: -10px; border-radius: 50%; background: #b5d288; }
+		.hero-art::after { content: ""; position: absolute; width: 270px; height: 270px; left: -52px; bottom: -118px; border: 1px solid rgba(36,107,75,.25); border-radius: 50%; box-shadow: 0 0 0 28px rgba(36,107,75,.04), 0 0 0 56px rgba(36,107,75,.04); }
+		.sun { position: absolute; z-index: -1; top: 48px; left: 54px; width: 68px; height: 68px; border-radius: 50%; background: var(--lime); }
+		.plant { position: absolute; right: 20%; bottom: -5px; width: 180px; height: 265px; }
+		.plant .stem { position: absolute; left: 89px; bottom: 58px; width: 5px; height: 190px; border-radius: 5px; background: #397451; transform: rotate(8deg); transform-origin: bottom; }
+		.leaf { position: absolute; z-index: 1; width: 86px; height: 43px; border-radius: 100% 0 100% 0; background: #397451; }
+		.leaf.one { left: 20px; top: 74px; transform: rotate(20deg); }
+		.leaf.two { right: 4px; top: 112px; transform: rotate(200deg); background: #5f8c5b; }
+		.leaf.three { left: 19px; top: 153px; transform: rotate(17deg); background: #5f8c5b; }
+		.pot { position: absolute; bottom: 0; left: 44px; width: 100px; height: 78px; border-radius: 8px 8px 25px 25px; background: #c87950; }
+		.art-note { position: absolute; right: 24px; bottom: 24px; z-index: 2; padding: 12px 16px; border: 1px solid rgba(24,37,31,.08); border-radius: 14px; background: rgba(255,255,255,.82); backdrop-filter: blur(8px); font-size: 12px; }
+		.art-note strong { display: block; font-size: 14px; }
+
+		.benefits { padding: 30px 0 76px; border-top: 1px solid #e1e5dd; }
+		.benefits-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 24px; }
+		.benefits-heading h2 { margin: 0; font-size: 24px; letter-spacing: -.04em; }
+		.benefits-heading p { margin: 0; color: var(--muted); font-size: 14px; }
+
+		/* Grid makes the benefit cards flow into fewer columns on smaller screens. */
+		.benefit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+		.benefit-card { min-height: 160px; padding: 23px; border: 1px solid #e2e6df; border-radius: 18px; background: #fff; }
+		.card-icon { display: grid; place-items: center; width: 36px; height: 36px; margin-bottom: 18px; border-radius: 11px; background: #edf4e3; color: var(--green); font-size: 18px; }
+		.benefit-card h3 { margin: 0 0 6px; font-size: 16px; }
+		.benefit-card p { margin: 0; color: var(--muted); font-size: 13px; }
+
+		footer { padding: 20px 0 28px; border-top: 1px solid #e1e5dd; color: var(--muted); font-size: 12px; }
+		.footer-inner { display: flex; justify-content: space-between; gap: 16px; }
+
+		@media (max-width: 760px) {
+			.page-shell { width: min(100% - 36px, 560px); }
+			.site-header { min-height: 72px; }
+			.nav-links { display: none; }
+			.hero { grid-template-columns: 1fr; gap: 36px; padding-block: 52px 64px; }
+			.hero-art { min-height: 330px; }
+			.hero-art::before { width: 320px; height: 320px; }
+			.plant { transform: scale(.88); transform-origin: bottom right; right: 14%; }
+			.benefit-grid { grid-template-columns: 1fr; }
+			.benefit-card { min-height: auto; }
+			.benefits-heading { align-items: start; flex-direction: column; gap: 5px; }
+		}
+
+		@media (max-width: 420px) {
+			.header-cta { padding: 9px 13px; font-size: 12px; }
+			.hero-art { min-height: 280px; }
+			.plant { right: 8%; transform: scale(.75); }
+			.art-note { right: 14px; bottom: 14px; }
+		}
+	</style>
+</head>
+<body>
+	<header class="site-header page-shell">
+		<a class="brand" href="#top" aria-label="Northstar home"><span class="brand-mark">n</span> northstar</a>
+		<nav class="nav-links" aria-label="Main navigation">
+			<a href="#benefits">Why Northstar</a>
+			<a href="#benefits">How it works</a>
+			<a href="#footer">About</a>
+		</nav>
+		<a class="header-cta" href="#benefits">Get started <span aria-hidden="true">↗</span></a>
+	</header>
+
+	<main id="top">
+		<section class="hero page-shell" aria-labelledby="hero-title">
+			<div class="hero-copy">
+				<span class="eyebrow">A calmer way to work</span>
+				<h1 id="hero-title">Make room for better work.</h1>
+				<p>Bring your ideas, people, and plans together in one thoughtful workspace. Less busywork, more of what matters.</p>
+				<div class="hero-actions">
+					<a class="button" href="#benefits">Find your focus <span aria-hidden="true">&nbsp;→</span></a>
+					<a class="text-link" href="#benefits">See how it works</a>
+				</div>
+			</div>
+			<div class="hero-art" role="img" aria-label="A leafy plant in a terracotta pot against a soft green background">
+				<div class="sun"></div>
+				<div class="plant" aria-hidden="true">
+					<div class="stem"></div><div class="leaf one"></div><div class="leaf two"></div><div class="leaf three"></div><div class="pot"></div>
+				</div>
+				<div class="art-note"><strong>Space to grow</strong>Good work starts here.</div>
+			</div>
+		</section>
+
+		<section class="benefits page-shell" id="benefits" aria-labelledby="benefits-title">
+			<div class="benefits-heading">
+				<h2 id="benefits-title">A little more clarity, every day.</h2>
+				<p>Everything you need to move forward, together.</p>
+			</div>
+			<div class="benefit-grid">
+				<article class="benefit-card">
+					<span class="card-icon" aria-hidden="true">✳</span>
+					<h3>Find your focus</h3>
+					<p>Keep priorities clear and make meaningful progress without the clutter.</p>
+				</article>
+				<article class="benefit-card">
+					<span class="card-icon" aria-hidden="true">⌁</span>
+					<h3>Work in sync</h3>
+					<p>Give your team a shared place to connect, collaborate, and create.</p>
+				</article>
+				<article class="benefit-card">
+					<span class="card-icon" aria-hidden="true">↗</span>
+					<h3>Grow with ease</h3>
+					<p>Simple tools adapt to your needs, so good habits can take root.</p>
+				</article>
+			</div>
+		</section>
+	</main>
+
+	<footer id="footer">
+		<div class="footer-inner page-shell"><span>© 2025 Northstar</span><span>Thoughtful tools for thoughtful work.</span></div>
+	</footer>
+</body>
+</html>

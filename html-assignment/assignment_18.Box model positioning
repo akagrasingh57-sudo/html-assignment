@@ -1,0 +1,28 @@
+## Box model annotation: my profile card
+
+Screenshot-style diagram of the `.profile-card` element (not to scale):
+
+```text
+┌────────────────────── MARGIN: 20px ───────────────────────┐
+│                                                            │
+│   ┌────────────────── BORDER: 2px ────────────────────┐   │
+│   │                                                    │   │
+│   │   ┌────────────── PADDING: 16px ───────────────┐   │   │
+│   │   │                                            │   │   │
+│   │   │   ┌──────── CONTENT: 180 × 60px ────────┐ │   │   │
+│   │   │   │ My Profile                         │ │   │   │
+│   │   │   │ Learning HTML and CSS              │ │   │   │
+│   │   │   └────────────────────────────────────┘ │   │   │
+│   │   │                                            │   │   │
+│   │   └────────────────────────────────────────────┘   │   │
+│   └────────────────────────────────────────────────────┘   │
+│                                                            │
+└────────────────────────────────────────────────────────────┘
+```
+
+- **Content** holds the text and has a width of 180px.
+- **Padding** adds 16px of space inside the border on each side.
+- **Border** is the 2px outline around the card.
+- **Margin** leaves 20px of space outside the border.
+
+With the default `content-box` sizing, the card's width is `180 + (16 × 2) + (2 × 2) = 216px`, excluding margins.

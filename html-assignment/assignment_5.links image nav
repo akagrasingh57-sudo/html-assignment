@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Portfolio</title>
+</head>
+<body>
+	<header>
+		<nav aria-label="Main navigation">
+			<a href="#home">Home</a>
+			<a href="#projects">Projects</a>
+			<a href="#contact">Contact</a>
+		</nav>
+	</header>
+
+	<main id="home">
+		<h1>My Portfolio</h1>
+		<section id="projects" aria-labelledby="projects-heading">
+			<h2 id="projects-heading">Projects</h2>
+			<article>
+				<h3>Responsive Website</h3>
+				<img src="images/responsive-website.jpg" alt="Preview of a responsive website project shown on desktop and mobile screens">
+			</article>
+			<article>
+				<h3>Nature Photography</h3>
+				<img src="images/nature-photography.jpg" alt="Landscape photograph of a mountain lake surrounded by forest">
+			</article>
+		</section>
+		<section id="contact" aria-labelledby="contact-heading">
+			<h2 id="contact-heading">Contact</h2>
+		</section>
+	</main>
+</body>
+</html>

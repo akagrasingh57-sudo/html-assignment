@@ -1,0 +1,45 @@
+/* Element selector */
+body {
+	margin: 0;
+	padding: 2rem;
+	background: #f4f7fb;
+	color: #263238;
+	font-family: Arial, sans-serif;
+	line-height: 1.6;
+}
+
+h1 {
+	color: #174ea6;
+	text-align: center;
+}
+
+/* Class selector */
+.card {
+	max-width: 700px;
+	margin: 1.5rem auto;
+	padding: 1.5rem;
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0 3px 12px rgb(0 0 0 / 10%);
+}
+
+/* ID selector */
+#main-content {
+	border-top: 4px solid #4285f4;
+}
+
+/* Descendant selector */
+.card p {
+	margin-bottom: 1rem;
+}
+
+/* Attribute selector */
+a[href^="https"] {
+	color: #0b8043;
+	text-decoration: none;
+}
+
+/* Pseudo-class selector */
+a:hover {
+	text-decoration: underline;
+}

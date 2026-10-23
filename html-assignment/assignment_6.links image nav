@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>My College and My Course</title>
+</head>
+<body>
+	<h1>INVERTIS UNIVERSITY BCAI</h1>
+
+	<section>
+		<h2>INVERTIS UNIVESITY</h2>
+		<ul>
+			<li><strong>invertis:</strong> [invertis university]</li>
+			<li><strong>BAREILLY:</strong> [uttar pradesh , bareilly]</li>
+			<li><strong>About my college:</strong> A place to learn, grow, and prepare for the future.</li>
+			<li><strong>Facilities:</strong>
+				<ul>
+					<li>Library and study areas</li>
+					<li>Computer and science labs</li>
+					<li>Sports facilities</li>
+					<li>Student cafeteria</li>
+				</ul>
+			</li>
+		</ul>
+	</section>
+
+	<section>
+		<h2>My Course</h2>
+		<ul>
+			<li><strong>Course name:</strong> [BCA AI]</li>
+			<li><strong>Duration:</strong> [2026-29]</li>
+			<li><strong>Subjects and skills:</strong>
+				<ol>
+					<li>Learn the fundamentals of the subject</li>
+					<li>Build practical skills through projects</li>
+					<li>Develop problem-solving and communication skills</li>
+				</ol>
+			</li>
+			<li><strong>Why I chose this course:</strong> It suits my interests and future goals.</li>
+			<li><strong>Possible careers:</strong>
+			</li>
+		</ul>
+	</section>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Resume | Akagra singh</title>
+</head>
+<body>
+	<header>
+		<h1>Alex Morgan</h1>
+		<p>Web Developer</p>
+		<p>akagrasingh57@gmail.com| 6395140461 | Seattle, WA</p>
+	</header>
+
+	<main>
+		<section>
+			<h2>Professional Summary</h2>
+			<p>Curious and detail-oriented web developer with experience building accessible, user-friendly websites. Enjoys solving problems and working with collaborative teams.</p>
+		</section>
+
+		<section>
+			<h2>Experience</h2>
+			<h3>Junior Web developer</h3>
+			<p>Student | 2026–Present</p>
+			<ul>
+				<li>Created and maintained responsive web pages using HTML, CSS, and JavaScript.</li>
+				<li>Worked with designers and teammates to improve usability and accessibility.</li>
+				<li>Found and fixed website issues through testing and feedback.</li>
+			</ul>
+
+			<h3>Web Development Intern</h3>
+			<p>Northstar Digital | </p>
+			<ul>
+				<li>Assisted with content updates and quality checks for client websites.</li>
+				<li>Learned version control and collaborative development practices.</li>
+			</ul>
+		</section>
+
+		<section>
+			<h2>Education</h2>
+			<h3>Bachelor of Science in Information Technology</h3>
+			<p>Pacific State University | 2026</p>
+		</section>
+
+		<section>
+			<h2>Skills</h2>
+			<p>HTML · CSS · JavaScript · Accessibility · Responsive Design · Communication · Teamwork</p>
+		</section>
+	</main>
+</body>
+</html>

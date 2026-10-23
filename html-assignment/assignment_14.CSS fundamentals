@@ -1,0 +1,62 @@
+/* Light styling for a Week 4 HTML page */
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 2rem 1rem;
+	background: #f7f8fa;
+	color: #303844;
+	font-family: Arial, Helvetica, sans-serif;
+	line-height: 1.6;
+}
+
+header,
+main,
+footer {
+	width: min(100%, 900px);
+	margin: 0 auto;
+}
+
+header {
+	padding: 1.5rem;
+	background: #eaf2f8;
+	border-radius: 8px;
+}
+
+h1,
+h2,
+h3 {
+	color: #285476;
+	line-height: 1.25;
+}
+
+main {
+	padding: 1rem 0;
+}
+
+p {
+	margin: 0 0 1rem;
+}
+
+a {
+	color: #1769aa;
+}
+
+a:hover {
+	color: #104c7b;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 6px;
+}
+
+footer {
+	padding-top: 1rem;
+	border-top: 1px solid #d9dfe6;
+	color: #66717d;
+	font-size: 0.9rem;
+}

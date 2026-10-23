@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Flexbox Navbar & Hero</title>
+	<style>
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			font-family: Arial, sans-serif;
+			background: #f5f6fa;
+		}
+		.navbar {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 1rem 2rem;
+			background: #222;
+			color: #fff;
+		}
+		.navbar .logo {
+			font-size: 1.5rem;
+			font-weight: bold;
+		}
+		.navbar ul {
+			display: flex;
+			gap: 2rem;
+			list-style: none;
+		}
+		.navbar a {
+			color: #fff;
+			text-decoration: none;
+			font-size: 1rem;
+			transition: color 0.2s;
+		}
+		.navbar a:hover {
+			color: #00a8ff;
+		}
+		.hero {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 4rem 2rem;
+			background: #fff;
+			flex-wrap: wrap;
+		}
+		.hero-content {
+			max-width: 500px;
+		}
+		.hero-title {
+			font-size: 2.5rem;
+			margin-bottom: 1rem;
+			color: #222;
+		}
+		.hero-desc {
+			font-size: 1.2rem;
+			margin-bottom: 2rem;
+			color: #555;
+		}
+		.hero-btn {
+			padding: 0.75rem 2rem;
+			background: #00a8ff;
+			color: #fff;
+			border: none;
+			border-radius: 4px;
+			font-size: 1rem;
+			cursor: pointer;
+			transition: background 0.2s;
+		}
+		.hero-btn:hover {
+			background: #0097e6;
+		}
+		.hero-img {
+			max-width: 400px;
+			width: 100%;
+			margin-top: 2rem;
+		}
+		@media (max-width: 900px) {
+			.hero {
+				flex-direction: column;
+				text-align: center;
+			}
+			.hero-content {
+				max-width: 100%;
+			}
+			.hero-img {
+				margin-top: 2rem;
+			}
+		}
+		@media (max-width: 600px) {
+			.navbar {
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 1rem;
+			}
+			.navbar ul {
+				flex-direction: column;
+				gap: 1rem;
+				width: 100%;
+			}
+			.hero {
+				padding: 2rem 1rem;
+			}
+			.hero-title {
+				font-size: 2rem;
+			}
+		}
+	</style>
+</head>
+<body>
+	<nav class="navbar">
+		<div class="logo">FlexSite</div>
+		<ul>
+			<li><a href="#">Home</a></li>
+			<li><a href="#">About</a></li>
+			<li><a href="#">Services</a></li>
+			<li><a href="#">Contact</a></li>
+		</ul>
+	</nav>
+	<section class="hero">
+		<div class="hero-content">
+			<h1 class="hero-title">Welcome to FlexSite</h1>
+			<p class="hero-desc">Build beautiful, responsive layouts easily with Flexbox. Start your journey with our modern templates and tools.</p>
+			<button class="hero-btn">Get Started</button>
+		</div>
+		<img class="hero-img" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Hero Image">
+	</section>
+</body>
+</html>

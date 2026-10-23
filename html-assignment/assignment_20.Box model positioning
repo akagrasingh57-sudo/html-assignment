@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Box Model and Positioning</title>
+	<style>
+		*,
+		*::before,
+		*::after {
+			box-sizing: border-box;
+		}
+
+		html,
+		body {
+			min-width: 0;
+			margin: 0;
+		}
+
+		body {
+			padding: 24px;
+			font: 16px/1.5 Arial, sans-serif;
+			color: #26364a;
+			background: #f2f5f9;
+		}
+
+		.page {
+			width: min(100%, 900px);
+			margin-inline: auto;
+		}
+
+		.columns {
+			display: grid;
+			grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+			gap: 20px;
+			margin-top: 20px;
+		}
+
+		.box {
+			min-width: 0;
+			padding: 20px;
+			border: 1px solid #ccd5e0;
+			border-radius: 8px;
+			background: #fff;
+			overflow-wrap: anywhere;
+		}
+
+		.overflow-content {
+			max-height: 180px;
+			overflow: auto;
+		}
+
+		.positioning-demo {
+			position: relative;
+			min-height: 120px;
+			padding: 16px;
+			border: 1px dashed #7890ad;
+		}
+
+		.label {
+			position: absolute;
+			top: 8px;
+			right: 8px;
+			max-width: calc(100% - 16px);
+			padding: 4px 8px;
+			color: #fff;
+			background: #315f9c;
+			overflow-wrap: anywhere;
+		}
+
+		@media (max-width: 600px) {
+			body {
+				padding: 12px;
+			}
+
+			.columns {
+				grid-template-columns: minmax(0, 1fr);
+			}
+		}
+	</style>
+</head>
+<body>
+	<main class="page">
+		<h1>Box Model and Positioning</h1>
+		<div class="columns">
+			<section class="box">
+				<h2>Overflow</h2>
+				<div class="overflow-content">
+					Content stays inside this box. The box scrolls when its content is too large, and long words can wrap instead of forcing the page wider.
+				</div>
+			</section>
+			<section class="box">
+				<h2>Positioning</h2>
+				<div class="positioning-demo">
+					<span class="label">Positioned label</span>
+					This element provides a positioning context for the label.
+				</div>
+			</section>
+		</div>
+	</main>
+</body>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Northstar — Find your next direction</title>
+	<style>
+		* { box-sizing: border-box; }
+
+		body {
+			margin: 0;
+			min-height: 100vh;
+			font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+			color: #f7f8ff;
+			background: #101326;
+		}
+
+		.hero {
+			position: relative;
+			isolation: isolate;
+			display: flex;
+			min-height: 720px;
+			align-items: center;
+			overflow: hidden;
+			padding: 32px max(7vw, 24px) 72px;
+			background: linear-gradient(115deg, #11152c 5%, #202650 57%, #382d66 100%);
+		}
+
+		.hero::before,
+		.hero::after {
+			position: absolute;
+			z-index: -1;
+			content: "";
+			pointer-events: none;
+			border-radius: 50%;
+		}
+
+		.hero::before {
+			width: 600px;
+			height: 600px;
+			top: -250px;
+			right: 20%;
+			background: radial-gradient(circle, rgba(95, 112, 255, .25), transparent 68%);
+		}
+
+		.hero::after {
+			width: 520px;
+			height: 520px;
+			right: -140px;
+			bottom: -240px;
+			background: radial-gradient(circle, rgba(255, 131, 177, .24), transparent 70%);
+		}
+
+		.topbar {
+			position: absolute;
+			z-index: 3;
+			top: 0;
+			left: 0;
+			display: flex;
+			width: 100%;
+			align-items: center;
+			justify-content: space-between;
+			padding: 28px max(7vw, 24px);
+		}
+
+		.brand {
+			color: #fff;
+			font-size: 1.2rem;
+			font-weight: 750;
+			letter-spacing: -.04em;
+			text-decoration: none;
+		}
+
+		.brand span { color: #a9b4ff; }
+
+		.nav-link {
+			color: #e5e7f5;
+			font-size: .92rem;
+			text-decoration: none;
+		}
+
+		.nav-link:hover { color: #fff; }
+
+		.hero-copy {
+			position: relative;
+			z-index: 2;
+			width: min(53%, 610px);
+			padding-top: 40px;
+		}
+
+		.eyebrow {
+			display: inline-flex;
+			align-items: center;
+			gap: 9px;
+			margin: 0 0 22px;
+			color: #c4caff;
+			font-size: .78rem;
+			font-weight: 700;
+			letter-spacing: .14em;
+			text-transform: uppercase;
+		}
+
+		.eyebrow::before {
+			width: 23px;
+			height: 2px;
+			background: #9daaff;
+			content: "";
+		}
+
+		h1 {
+			max-width: 620px;
+			margin: 0;
+			font-size: clamp(3rem, 6.2vw, 5.7rem);
+			line-height: .99;
+			letter-spacing: -.065em;
+		}
+
+		h1 span { color: #aeb8ff; }
+
+		.description {
+			max-width: 460px;
+			margin: 25px 0 32px;
+			color: #c1c5da;
+			font-size: 1.05rem;
+			line-height: 1.7;
+		}
+
+		.button {
+			display: inline-block;
+			padding: 15px 22px;
+			border: 1px solid rgba(255,255,255,.2);
+			border-radius: 8px;
+			color: #171a31;
+			background: #f4f5ff;
+			box-shadow: 0 10px 30px rgba(10, 12, 30, .2);
+			font-size: .94rem;
+			font-weight: 700;
+			text-decoration: none;
+			transition: transform .2s ease, background .2s ease;
+		}
+
+		.button:hover { transform: translateY(-2px); background: #dfe3ff; }
+
+		.artwork {
+			position: absolute;
+			z-index: 1;
+			top: 50%;
+			right: 7%;
+			width: min(42vw, 510px);
+			aspect-ratio: 1;
+			transform: translateY(-45%);
+		}
+
+		.orbit {
+			position: absolute;
+			inset: 8%;
+			border: 1px solid rgba(216, 221, 255, .24);
+			border-radius: 50%;
+			transform: rotate(-24deg) scaleY(.68);
+		}
+
+		.orbit--outer {
+			z-index: 0;
+			inset: 0;
+			border-color: rgba(216, 221, 255, .16);
+			transform: rotate(28deg) scaleY(.7);
+		}
+
+		.planet {
+			position: absolute;
+			z-index: 1;
+			top: 17%;
+			left: 19%;
+			width: 64%;
+			height: 64%;
+			border-radius: 50%;
+			background: radial-gradient(circle at 32% 25%, #f6b7d2 0, #9c83e9 30%, #5659ad 61%, #292e64 100%);
+			box-shadow: inset -24px -20px 45px rgba(13, 17, 56, .45), 0 28px 80px rgba(104, 104, 227, .27);
+		}
+
+		.planet::after {
+			position: absolute;
+			inset: 0;
+			border-radius: inherit;
+			background: linear-gradient(135deg, transparent 38%, rgba(20, 25, 67, .52));
+			content: "";
+		}
+
+		.spark {
+			position: absolute;
+			z-index: 2;
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			background: #fff;
+			box-shadow: 0 0 18px 5px rgba(204, 211, 255, .65);
+		}
+
+		.spark--one { top: 15%; right: 20%; }
+		.spark--two { bottom: 21%; left: 8%; width: 6px; height: 6px; }
+
+		.note {
+			position: absolute;
+			z-index: 3;
+			right: 0;
+			bottom: 15%;
+			padding: 14px 18px;
+			border: 1px solid rgba(255,255,255,.18);
+			border-radius: 12px;
+			background: rgba(24, 28, 63, .78);
+			box-shadow: 0 16px 40px rgba(7, 8, 25, .25);
+			backdrop-filter: blur(12px);
+			color: #dfe2f7;
+			font-size: .85rem;
+		}
+
+		.note strong { display: block; margin-bottom: 4px; color: #fff; }
+
+		@media (max-width: 760px) {
+			.hero { min-height: 780px; align-items: flex-start; padding-top: 150px; }
+			.hero-copy { width: 100%; }
+			.artwork { top: auto; right: 8%; bottom: -90px; width: min(70vw, 380px); transform: none; opacity: .78; }
+			.note { bottom: 15%; }
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			*, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+		}
+	</style>
+</head>
+<body>
+	<main class="hero">
+		<header class="topbar">
+			<a class="brand" href="#home">north<span>star</span></a>
+			<a class="nav-link" href="#discover">Discover <span aria-hidden="true">↗</span></a>
+		</header>
+
+		<section class="hero-copy" id="home" aria-labelledby="hero-title">
+			<p class="eyebrow">A clearer way forward</p>
+			<h1 id="hero-title">Make room for <span>what’s next.</span></h1>
+			<p class="description">Big ideas begin with a new perspective. Find the space, focus, and inspiration to move toward yours.</p>
+			<a class="button" href="#discover">Explore your possibilities <span aria-hidden="true">→</span></a>
+		</section>
+
+		<div class="artwork" aria-hidden="true">
+			<div class="orbit orbit--outer"></div>
+			<div class="orbit"></div>
+			<div class="planet"></div>
+			<span class="spark spark--one"></span>
+			<span class="spark spark--two"></span>
+			<div class="note"><strong>A fresh perspective</strong> starts right here.</div>
+		</div>
+	</main>
+</body>
+</html>

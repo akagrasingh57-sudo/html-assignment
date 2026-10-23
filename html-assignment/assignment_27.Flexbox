@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Bloom — Make room to grow</title>
+	<style>
+		:root {
+			--ink: #18352d;
+			--muted: #60746b;
+			--green: #356b52;
+			--cream: #f7f7f0;
+			--lime: #d9ef9b;
+		}
+
+		* { box-sizing: border-box; }
+
+		body {
+			margin: 0;
+			color: var(--ink);
+			background: var(--cream);
+			font-family: "Segoe UI", Arial, sans-serif;
+		}
+
+		a { color: inherit; text-decoration: none; }
+
+		.page-shell {
+			width: min(1120px, calc(100% - 48px));
+			margin: 0 auto;
+		}
+
+		.site-header {
+			min-height: 82px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 24px;
+		}
+
+		.brand {
+			font-size: 1.45rem;
+			font-weight: 800;
+			letter-spacing: -0.06em;
+		}
+
+		.brand span { color: var(--green); }
+
+		.nav-links {
+			display: flex;
+			align-items: center;
+			gap: 30px;
+			color: var(--muted);
+			font-size: 0.92rem;
+		}
+
+		.nav-links a:hover { color: var(--green); }
+
+		.nav-cta, .primary-cta {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 999px;
+			background: var(--green);
+			color: white;
+			font-weight: 700;
+		}
+
+		.nav-cta { padding: 12px 19px; }
+
+		.hero {
+			min-height: 520px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 54px;
+			padding: 58px 0 76px;
+		}
+
+		.hero-copy { flex: 1 1 52%; }
+
+		.eyebrow {
+			display: inline-block;
+			margin-bottom: 18px;
+			color: var(--green);
+			font-size: 0.78rem;
+			font-weight: 800;
+			letter-spacing: 0.13em;
+			text-transform: uppercase;
+		}
+
+		h1 {
+			max-width: 610px;
+			margin: 0;
+			font-size: clamp(3rem, 6vw, 5.3rem);
+			line-height: 0.99;
+			letter-spacing: -0.075em;
+		}
+
+		.hero-copy p {
+			max-width: 490px;
+			margin: 24px 0 30px;
+			color: var(--muted);
+			font-size: 1.08rem;
+			line-height: 1.7;
+		}
+
+		.primary-cta { padding: 15px 23px; }
+		.primary-cta:hover, .nav-cta:hover { background: #264f3d; }
+
+		.hero-art {
+			position: relative;
+			flex: 1 1 42%;
+			min-height: 390px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden;
+			border-radius: 48% 48% 36% 36%;
+			background: #e5edcf;
+		}
+
+		.sun {
+			position: absolute;
+			top: 50px;
+			right: 54px;
+			width: 100px;
+			aspect-ratio: 1;
+			border-radius: 50%;
+			background: var(--lime);
+		}
+
+		.plant { position: relative; width: 220px; height: 270px; }
+		.stem {
+			position: absolute;
+			left: 108px;
+			bottom: 0;
+			width: 8px;
+			height: 230px;
+			border-radius: 8px;
+			background: var(--green);
+			transform: rotate(5deg);
+		}
+
+		.leaf {
+			position: absolute;
+			width: 112px;
+			height: 58px;
+			border-radius: 100% 0 100% 0;
+			background: #74a878;
+		}
+
+		.leaf-one { top: 54px; left: 4px; transform: rotate(12deg); }
+		.leaf-two { top: 105px; right: 0; transform: scaleX(-1) rotate(14deg); background: #4d855f; }
+		.leaf-three { top: 150px; left: 18px; transform: rotate(4deg); background: #94bd79; }
+
+		.pot {
+			position: absolute;
+			bottom: 0;
+			left: 56px;
+			width: 115px;
+			height: 82px;
+			border-radius: 10px 10px 35px 35px;
+			background: #c87955;
+			clip-path: polygon(0 0, 100% 0, 86% 100%, 14% 100%);
+		}
+
+		.benefits {
+			display: flex;
+			justify-content: space-between;
+			gap: 22px;
+			padding: 28px 0 42px;
+			border-top: 1px solid #dfe4d8;
+		}
+
+		.benefit { flex: 1; }
+		.benefit strong { display: block; margin-bottom: 7px; font-size: 1rem; }
+		.benefit span { color: var(--muted); font-size: 0.9rem; line-height: 1.5; }
+
+		@media (max-width: 720px) {
+			.page-shell { width: min(100% - 36px, 520px); }
+			.site-header { min-height: 72px; }
+			.nav-links { gap: 16px; }
+			.nav-links a:not(.nav-cta) { display: none; }
+			.hero { flex-direction: column; align-items: stretch; gap: 36px; padding: 48px 0; }
+			.hero-art { min-height: 320px; }
+			.benefits { flex-direction: column; gap: 20px; }
+		}
+	</style>
+</head>
+<body>
+	<div class="page-shell">
+		<header class="site-header">
+			<a class="brand" href="#home" aria-label="Bloom home">bloom<span>.</span></a>
+			<nav class="nav-links" aria-label="Main navigation">
+				<a href="#benefits">Why Bloom</a>
+				<a href="#about">Our approach</a>
+				<a class="nav-cta" href="#get-started">Get started</a>
+			</nav>
+		</header>
+
+		<main>
+			<section class="hero" id="home" aria-labelledby="hero-title">
+				<div class="hero-copy">
+					<span class="eyebrow">A little more room to grow</span>
+					<h1 id="hero-title">Good things grow with care.</h1>
+					<p>Build small, feel-good habits that fit your everyday life. Bloom helps you make steady progress, one simple step at a time.</p>
+					<a class="primary-cta" id="get-started" href="#benefits">Find your fresh start&nbsp; →</a>
+				</div>
+
+				<div class="hero-art" role="img" aria-label="Illustration of a green plant growing in a terracotta pot">
+					<div class="sun"></div>
+					<div class="plant" aria-hidden="true">
+						<div class="stem"></div>
+						<div class="leaf leaf-one"></div>
+						<div class="leaf leaf-two"></div>
+						<div class="leaf leaf-three"></div>
+						<div class="pot"></div>
+					</div>
+				</div>
+			</section>
+
+			<section class="benefits" id="benefits" aria-label="Benefits">
+				<div class="benefit">
+					<strong>Start where you are</strong>
+					<span>Make a plan that feels realistic for you.</span>
+				</div>
+				<div class="benefit" id="about">
+					<strong>Keep it simple</strong>
+					<span>Turn big intentions into easy daily actions.</span>
+				</div>
+				<div class="benefit">
+					<strong>Celebrate progress</strong>
+					<span>Notice every small win along the way.</span>
+				</div>
+			</section>
+		</main>
+	</div>
+</body>
+</html>
