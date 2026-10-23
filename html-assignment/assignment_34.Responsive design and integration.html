@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Responsive Design and Integration</title>
+	<style>
+		* { box-sizing: border-box; }
+		body { margin: 0; font: 16px/1.6 Arial, sans-serif; color: #203047; background: #f4f7fb; }
+		header { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 1rem 8%; color: white; background: #173b66; }
+		header h1 { margin: 0; font-size: 1.4rem; }
+		nav { display: flex; gap: 1.25rem; }
+		nav a { color: white; text-decoration: none; }
+		main { width: min(1100px, 84%); margin: 3rem auto; }
+		.intro { max-width: 650px; margin-bottom: 2rem; }
+		.intro h2 { margin: 0 0 .5rem; font-size: 2.5rem; line-height: 1.15; }
+		.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+		article { padding: 1.5rem; background: white; border-radius: 12px; box-shadow: 0 4px 16px #20304714; }
+		article h3 { margin-top: 0; color: #176b87; }
+		footer { padding: 1rem; text-align: center; color: #526174; }
+
+		/* Tablet breakpoint: two columns, more compact spacing. */
+		@media (max-width: 900px) {
+			header { padding-inline: 5%; }
+			main { width: 90%; }
+			.cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+			.intro h2 { font-size: 2.1rem; }
+		}
+
+		/* Phone breakpoint: stacked navigation and single-column cards. */
+		@media (max-width: 600px) {
+			header { align-items: flex-start; flex-direction: column; padding: 1rem 5%; }
+			nav { flex-wrap: wrap; gap: .5rem 1rem; }
+			main { margin: 2rem auto; }
+			.intro h2 { font-size: 1.8rem; }
+			.cards { grid-template-columns: 1fr; }
+			article { padding: 1.2rem; }
+		}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Bright Ideas</h1>
+		<nav aria-label="Main navigation">
+			<a href="#home">Home</a><a href="#work">Work</a><a href="#contact">Contact</a>
+		</nav>
+	</header>
+	<main id="home">
+		<section class="intro">
+			<h2>Thoughtful design for every screen</h2>
+			<p>A responsive project layout that adapts from desktop to tablet and phone using fluid sizing and two CSS breakpoints.</p>
+		</section>
+		<section class="cards" id="work" aria-label="Featured work">
+			<article><h3>Web Design</h3><p>Clear page layouts that make content easy to explore.</p></article>
+			<article><h3>Mobile First</h3><p>Readable text, comfortable spacing, and simple navigation.</p></article>
+			<article><h3>Integration</h3><p>Consistent components for a cohesive experience on all devices.</p></article>
+		</section>
+	</main>
+	<footer id="contact">Resize the browser to preview the responsive layout.</footer>
+</body>
+</html>
